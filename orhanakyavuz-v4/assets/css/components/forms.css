@@ -1,0 +1,233 @@
+/* ============================================================================
+   FORMS
+   Sprint 2 § 8'in CSS uygulaması. Ana sayfada yalnızca Newsletter formu
+   var; diğer input tipleri (select, checkbox, radio, dosya yükleme)
+   İletişim ve gelecekteki form sayfaları için hazır tutulur.
+   ============================================================================ */
+
+/* ------------------------------------------------------------------------
+   TEXT INPUT / EMAIL / SEARCH — ortak taban
+   ---------------------------------------------------------------------- */
+.input {
+  height: 44px;
+  padding-inline: var(--space-4);
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.input::placeholder {
+  color: var(--color-gray-400);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--color-accent-500);
+  box-shadow: var(--shadow-xs), 0 0 0 3px var(--color-accent-100);
+}
+.input:disabled {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-400);
+  cursor: not-allowed;
+}
+
+/* Durumlar */
+.input--error {
+  border-color: var(--color-error);
+}
+.input--success {
+  border-color: var(--color-success);
+}
+.form-hint {
+  display: block;
+  font-size: 13px;
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+}
+.form-hint--error {
+  color: var(--color-error);
+}
+.form-hint--success {
+  color: var(--color-success);
+}
+
+/* ------------------------------------------------------------------------
+   TEXTAREA
+   ---------------------------------------------------------------------- */
+.textarea {
+  min-height: 120px;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  transition: border-color var(--transition-fast);
+}
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-500);
+  box-shadow: var(--shadow-xs), 0 0 0 3px var(--color-accent-100);
+}
+
+/* ------------------------------------------------------------------------
+   SELECT
+   ---------------------------------------------------------------------- */
+.select {
+  height: 44px;
+  padding-inline: var(--space-4);
+  padding-right: var(--space-8);
+  font-size: 16px;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6472' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+}
+
+/* ------------------------------------------------------------------------
+   CHECKBOX / RADIO
+   ---------------------------------------------------------------------- */
+.checkbox,
+.radio {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--color-gray-300);
+  accent-color: var(--color-accent-500);
+}
+.checkbox {
+  border-radius: var(--radius-xs);
+}
+.radio {
+  border-radius: var(--radius-full);
+}
+
+/* ------------------------------------------------------------------------
+   TOGGLE
+   ---------------------------------------------------------------------- */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.toggle__track {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-gray-300);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
+}
+.toggle__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+.toggle input:checked + .toggle__track {
+  background-color: var(--color-accent-500);
+}
+.toggle input:checked + .toggle__track .toggle__thumb {
+  transform: translateX(16px);
+}
+
+/* ------------------------------------------------------------------------
+   DOSYA YÜKLEME ALANI
+   ---------------------------------------------------------------------- */
+.file-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-10);
+  text-align: center;
+  background-color: var(--color-gray-50);
+  border: 1.5px dashed var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+.file-dropzone:hover,
+.file-dropzone--active {
+  border-color: var(--color-accent-300);
+  background-color: var(--color-accent-50);
+}
+
+/* ------------------------------------------------------------------------
+   NEWSLETTER FORMU — Abone Ol bölümü (koyu zemin üzerinde)
+   ---------------------------------------------------------------------- */
+.newsletter__input {
+  flex: 1;
+  height: 48px;
+  padding-inline: var(--space-4);
+  font-size: 16px;
+  color: var(--color-text-primary);
+  background-color: #FFFFFF;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+}
+.newsletter__input::placeholder {
+  color: var(--color-gray-400);
+}
+.newsletter__input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+/* ------------------------------------------------------------------------
+   FORM FIELD GROUP — Sprint 11 (İletişim sayfası)
+   Newsletter formundan farklı olarak burada label GÖRÜNÜR (tek input değil,
+   çok alanlı bir form söz konusu — görünür label kullanılabilirliği artırır).
+   ---------------------------------------------------------------------- */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.form-label__optional {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.form-field .input,
+.form-field .textarea {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------------
+   CONTACT FORM WRAPPER — Sprint 14 audit fix (önceden satır içi stildi)
+   ---------------------------------------------------------------------- */
+.contact-form {
+  max-width: 480px;
+  margin-inline: auto;
+  text-align: left;
+}

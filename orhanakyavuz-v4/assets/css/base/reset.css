@@ -1,0 +1,138 @@
+/* ============================================================================
+   RESET + NORMALIZE
+   ============================================================================
+   Mimari not: Klasik "Reset" (Eric Meyer tarzı, her şeyi sıfırlayan) ile
+   "Normalize.css" (tarayıcılar arası tutarlılığı korurken makul
+   varsayılanları koruyan) artık ayrı iki dosya olarak tutulmuyor.
+   Modern tarayıcılarda ikisinin görevini tek, güncel bir "modern reset"
+   üstleniyor: zararlı/tutarsız varsayılanları sıfırlar (margin, box-sizing),
+   ama erişilebilirlik açısından faydalı varsayılanları (odak halkası,
+   form elemanı davranışları) korur. İki ayrı dosya tutmak, günümüzde
+   birbiriyle çelişen kurallar ve gereksiz tekrar riski taşır.
+   ============================================================================ */
+
+/* Tüm kutu modeli hesaplamalarını öngörülebilir kılar */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Tarayıcı varsayılan boşluklarını sıfırla */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Kök element: doğal genişlik/yükseklik davranışı için */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+/*
+  Kullanıcı "azaltılmış hareket" tercih ediyorsa smooth scroll'u
+  ve tüm animasyonları neredeyse sıfırla — WCAG 2.3.3 / Sprint 2 § 13
+*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  min-height: 100svh;
+  line-height: 1.5; /* Tipografi bileşenleri kendi line-height'ını override eder */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Görsel ve medya öğeleri taşkın olmasın, satır-içi boşluk bırakmasın */
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form elemanları ebeveyn fontunu miras alır (tarayıcı varsayılanı değil) */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+/* Liste stillerini kaldır — semantik `<ul>/<ol>` her yerde bilinçli
+   kullanılıyor (Sprint 4), ama görsel madde işareti tasarım kararıdır */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Linkler varsayılan renk/alt çizgiyi miras almasın — her komponent
+   kendi link stilini `components/*.css` içinde tanımlar */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Başlıklar varsayılan tarayıcı font-size'ını miras almasın —
+   tüm ölçekleme base/typography.css içinde tanımlanır */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Tablo hücreleri arası boşluğu sıfırla, kenarlıklar tek çizgi halinde */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Metin taşmalarını önle, uzun URL/kelimeler layout'u bozmasın */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* Metin girişi alanlarının tutarsız resize davranışını sınırla */
+textarea {
+  resize: vertical;
+}
+
+/*
+  Klavye ile gezinen kullanıcılar için focus halkasını KORUYORUZ
+  (`:focus-visible` ile yalnızca klavyede görünür — Sprint 2 § 13).
+  Fare tıklamasında gereksiz görsel gürültü olmaması için varsayılan
+  `outline` sıfırlanır, ama `:focus-visible` her interaktif elementte
+  components/*.css içinde yeniden tanımlanır — outline TAMAMEN
+  kaldırılmaz, yalnızca fare tıklamasında bastırılır.
+*/
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-300);
+  outline-offset: 2px;
+}

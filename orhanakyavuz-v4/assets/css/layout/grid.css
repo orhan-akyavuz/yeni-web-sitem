@@ -1,0 +1,89 @@
+/* ============================================================================
+   GRID — 8-Point Grid & Container Sistemi
+   Sprint 2 § 1'in doğrudan uygulaması.
+   ============================================================================ */
+
+/*
+  .container: sitedeki her section'ın standart genişlik sınırlayıcısı.
+  Mobil-first: küçük ekranda yalnızca yan padding var; büyüdükçe
+  max-width devreye girer ve içerik ortalanır.
+*/
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--space-5); /* 20px — Mobil (320–767) */
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-10); /* 40px — Tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: var(--space-16); /* 64px — Laptop */
+    max-width: calc(var(--container-max) + 2 * var(--space-16));
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    /* Desktop: 1200px içerik + kalan alan doğal margin olur */
+    max-width: calc(var(--container-max) + 2 * var(--space-16));
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    /* Large Desktop / UltraWide: 1320px tavan — Sprint 2 § 11 kritik ilke */
+    max-width: calc(var(--container-wide-cap) + 2 * var(--space-16));
+  }
+}
+
+/* Dar container — İletişim, Abone Ol gibi "odaklı" bölümler için */
+.container--narrow {
+  max-width: 560px;
+}
+
+/* Okuma sütunu — yalnızca makale gövdesi (blog detay şablonu) için */
+.container--reading {
+  max-width: var(--container-reading);
+}
+
+/* ------------------------------------------------------------------------
+   GRID YARDIMCILARI — kart grid'leri için genel amaçlı CSS Grid tanımları.
+   Her komponent kendi sütun sayısını media query ile override eder
+   (bkz. components/cards.css), burada yalnızca gap ve temel yapı var.
+   ---------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: var(--space-4); /* 16px — Mobil */
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: var(--space-6); /* 24px — Laptop ve üzeri */
+  }
+}
+
+.grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Mobilde tüm grid'ler varsayılan olarak tek sütuna döner */
+@media (max-width: 767px) {
+  .grid--cols-2,
+  .grid--cols-3,
+  .grid--cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablette 3–4 sütunlu grid'ler 2 sütuna iner */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid--cols-3,
+  .grid--cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

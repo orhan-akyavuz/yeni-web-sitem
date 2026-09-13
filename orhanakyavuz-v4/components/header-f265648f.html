@@ -1,0 +1,75 @@
+<header class="site-header" role="banner">
+    <div class="site-header__container">
+      <a class="site-header__logo" href="/" aria-label="orhanakyavuz — Ana Sayfa">orhanakyavuz</a>
+
+      <nav class="site-nav" aria-label="Ana navigasyon">
+        <ul class="site-nav__list">
+          <li class="site-nav__item site-nav__item--has-dropdown">
+            <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-haspopup="true">
+              <span>Keşfet</span>
+              <svg class="site-nav__chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="mega-menu" role="region" aria-label="Keşfet alt menüsü">
+              <div class="mega-menu__inner">
+                <div class="mega-menu__grid">
+                  <a class="mega-menu__card" href="/seviye-analizi/">
+                    <span class="mega-menu__icon-box" aria-hidden="true">📊</span>
+                    <div class="mega-menu__card-content">
+                      <span class="mega-menu__card-title">Seviye Analizi</span>
+                      <span class="mega-menu__card-desc">Eksiklerini ve net seviyeni analiz et</span>
+                    </div>
+                  </a>
+                  <a class="mega-menu__card" href="/haftanin-problemi/">
+                    <span class="mega-menu__icon-box" aria-hidden="true">💡</span>
+                    <div class="mega-menu__card-content">
+                      <span class="mega-menu__card-title">Haftanın Problemi</span>
+                      <span class="mega-menu__card-desc">Zorlayıcı sorular ve çözüm taktikleri</span>
+                    </div>
+                  </a>
+                  <a class="mega-menu__card" href="/blog/">
+                    <span class="mega-menu__icon-box" aria-hidden="true">📝</span>
+                    <div class="mega-menu__card-content">
+                      <span class="mega-menu__card-title">Rehberlik &amp; Blog</span>
+                      <span class="mega-menu__card-desc">Matematik stratejileri ve konu özetleri</span>
+                    </div>
+                  </a>
+                  <a class="mega-menu__card" href="/pages/iletisim.html">
+                    <span class="mega-menu__icon-box" aria-hidden="true">🎯</span>
+                    <div class="mega-menu__card-content">
+                      <span class="mega-menu__card-title">Özel Ders &amp; İletişim</span>
+                      <span class="mega-menu__card-desc">Birebir çalışma planı ve koçluk</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="site-nav__item"><a class="site-nav__link" href="/blog/">Yazılar</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="/pages/kategoriler/" aria-current="page">Kategoriler</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="/pages/hakkimda.html">Hakkımda</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="/pages/iletisim.html">İletişim</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="site-header__search-toggle" aria-label="Site içinde ara" aria-haspopup="true" aria-expanded="false">
+        <img src="/assets/icons/search.svg" alt="" width="20" height="20" aria-hidden="true" />
+      </button>
+
+      <button type="button" class="site-header__menu-toggle" aria-label="Menüyü aç" aria-controls="mobile-nav" aria-expanded="false">
+        <img id="menu-toggle-icon" src="/assets/icons/menu.svg" alt="" width="24" height="24" aria-hidden="true" />
+      </button>
+    </div>
+
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobil navigasyon" hidden>
+      <ul class="mobile-nav__list">
+        <li><a class="mobile-nav__link" href="/seviye-analizi/">Seviye Analizi</a></li>
+        <li><a class="mobile-nav__link" href="/haftanin-problemi/">Haftanın Problemi</a></li>
+        <li><a class="mobile-nav__link" href="/blog/">Yazılar &amp; Rehberlik</a></li>
+        <li><a class="mobile-nav__link" href="/pages/kategoriler/" aria-current="page">Kategoriler</a></li>
+        <li><a class="mobile-nav__link" href="/pages/hakkimda.html">Hakkımda</a></li>
+        <li><a class="mobile-nav__link" href="/pages/iletisim.html">İletişim</a></li>
+      </ul>
+    </nav>
+  </header>

@@ -1,0 +1,65 @@
+/* ============================================================================
+   BREADCRUMB
+   Sprint 7 § (sayfa yerleşimleri) ve Sprint 9 § 1.4'te tanımlanan
+   içerik yolu — yalnızca hiyerarşik derinliği olan sayfalarda kullanılır
+   (makale, kategori/etiket detay sayfaları). Ana sayfada ve üst düzey
+   sayfalarda (Hakkımda, İletişim) gösterilmez.
+   ============================================================================ */
+
+.breadcrumb {
+  width: 100%;
+  max-width: calc(var(--container-max) + 2 * var(--space-16));
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+  padding-top: var(--space-8);
+}
+@media (min-width: 768px) { .breadcrumb { padding-inline: var(--space-10); } }
+@media (min-width: 1024px) { .breadcrumb { padding-inline: var(--space-16); } }
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.breadcrumb__link {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+.breadcrumb__link:hover {
+  color: var(--color-text-primary);
+}
+
+/* Geçerli sayfa — tıklanamaz, biraz daha koyu */
+.breadcrumb__current {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  /* Uzun makale başlıklarında breadcrumb'ın taşmasını önle */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 40ch;
+}
+
+.breadcrumb__separator {
+  color: var(--color-gray-300);
+  display: inline-flex;
+}
+.breadcrumb__separator img {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sprint 13 — eksik :active durumu */
+.breadcrumb__link:active {
+  color: var(--color-text-primary);
+}

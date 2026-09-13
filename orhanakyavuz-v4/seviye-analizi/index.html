@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematik Seviyeni Keşfet | Matematik Dünyam</title>
+  <meta name="description" content="Seviyene uygun matematik değerlendirmesini seç ve güçlü olduğun konuları keşfet." />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <!-- INCLUDE HEADER -->
+
+  <main id="main-content" class="level-analysis-page" data-level-analysis-page>
+    <section class="level-analysis-hero" aria-labelledby="level-analysis-heading">
+      <p class="weekly-problem__eyebrow">Matematik Dünyam / Ücretsiz değerlendirme</p>
+      <h1 id="level-analysis-heading">Matematik Seviyeni Keşfet</h1>
+      <p>
+        Seviyene uygun değerlendirmeyi seç, soruları çöz ve matematikte hangi konularda güçlü veya eksik olduğunu birlikte keşfedelim.
+      </p>
+    </section>
+
+    <section class="level-analysis-step" aria-labelledby="group-heading">
+      <div class="section-header">
+        <div>
+          <p class="level-analysis-step__eyebrow">01 / Değerlendirme seçimi</p>
+          <h2 id="group-heading" class="section-header__title">Hangi gruba aitsin?</h2>
+        </div>
+        <p class="level-analysis-step__status" data-level-analysis-status role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="level-analysis-group-grid" role="list" aria-label="Sınav grupları">
+        <button class="level-analysis-group-card" type="button" data-analysis-group="tyt-ayt">
+          <strong>TYT / AYT</strong>
+          <span>YKS'ye hazırlanan öğrenciler için</span>
+        </button>
+        <button class="level-analysis-group-card" type="button" data-analysis-group="ortaokul">
+          <strong>Ortaokul</strong>
+          <span>5, 6, 7 ve 8. sınıf öğrencileri için</span>
+        </button>
+        <button class="level-analysis-group-card" type="button" data-analysis-group="kpss">
+          <strong>KPSS</strong>
+          <span>KPSS'ye hazırlanan adaylar için</span>
+        </button>
+        <button class="level-analysis-group-card" type="button" data-analysis-group="ales">
+          <strong>ALES</strong>
+          <span>ALES'e hazırlanan adaylar için</span>
+        </button>
+        <button class="level-analysis-group-card" type="button" data-analysis-group="dgs">
+          <strong>DGS</strong>
+          <span>DGS'ye hazırlanan adaylar için</span>
+        </button>
+        <button class="level-analysis-group-card" type="button" data-analysis-group="diger">
+          <strong>Diğer</strong>
+          <span>Diğer matematik seviyeleri</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="level-analysis-step" aria-labelledby="level-heading" data-analysis-level-step hidden>
+      <div class="section-header">
+        <div>
+          <p class="level-analysis-step__eyebrow">02 / Seviye seçimi</p>
+          <h2 id="level-heading" class="section-header__title">Sana uygun değerlendirmeyi seç</h2>
+        </div>
+      </div>
+      <div class="level-analysis-level-list" data-analysis-level-list role="list"></div>
+      <label class="level-analysis-custom-level" data-analysis-custom-level hidden>
+        <span class="form-label">Matematik seviyeni belirt</span>
+        <input class="input" type="text" name="customLevel" maxlength="120" placeholder="Örn. Üniversite hazırlık" />
+      </label>
+      <p class="level-analysis-step__status" data-analysis-level-status role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="level-analysis-step" aria-labelledby="student-heading" data-analysis-student-step hidden>
+      <div class="section-header">
+        <div>
+          <p class="level-analysis-step__eyebrow">03 / Öğrenci bilgileri</p>
+          <h2 id="student-heading" class="section-header__title">Seni biraz tanıyalım</h2>
+        </div>
+      </div>
+      <form class="level-analysis-form" data-analysis-student-form novalidate>
+        <div class="level-analysis-form__grid">
+          <div class="form-field">
+            <label class="form-label" for="analysis-full-name">Ad Soyad</label>
+            <input class="input" id="analysis-full-name" name="fullName" type="text" autocomplete="name" required minlength="2" maxlength="120" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="analysis-education-status">Sınıf / mezuniyet durumu</label>
+            <input class="input" id="analysis-education-status" name="educationStatus" type="text" maxlength="120" placeholder="Örn. 12. sınıf" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="analysis-target-exam">Hedef sınav</label>
+            <input class="input" id="analysis-target-exam" name="targetExam" type="text" maxlength="120" placeholder="Örn. TYT / AYT" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="analysis-contact-info">İletişim bilgisi</label>
+            <input class="input" id="analysis-contact-info" name="contactInfo" type="text" autocomplete="email" maxlength="160" placeholder="E-posta veya telefon" required />
+          </div>
+        </div>
+        <button class="button button--primary button--medium" type="submit">Değerlendirmeye geç</button>
+        <p class="level-analysis-step__status" data-analysis-student-status role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    
+    <section class="level-analysis-step" aria-labelledby="test-heading" data-analysis-test-step hidden>
+      <div class="section-header">
+        <div>
+          <p class="level-analysis-step__eyebrow">04 / Değerlendirme</p>
+          <h2 id="test-heading" class="section-header__title" data-analysis-test-title>Matematik seviye değerlendirmesi</h2>
+        </div>
+      </div>
+      <div class="level-analysis-test-card">
+        <p data-analysis-test-description>Seçtiğin seviyeye uygun değerlendirme.</p>
+        <dl class="level-analysis-test-meta">
+          <div><dt>Tahmini süre</dt><dd data-analysis-test-duration>-</dd></div>
+          <div><dt>Soru sayısı</dt><dd data-analysis-test-question-count>-</dd></div>
+        </dl>
+        <a class="button button--secondary button--medium" data-analysis-test-pdf href="#" hidden download>PDF'yi indir</a>
+      </div>
+
+      <div class="level-analysis-upload" data-analysis-upload>
+        <div class="level-analysis-upload__header">
+          <div>
+            <p class="level-analysis-step__eyebrow">Çözüm sayfaları</p>
+            <h3>Çözümlerini yükle</h3>
+          </div>
+          <span class="level-analysis-upload__hint">En fazla 3 fotoğraf</span>
+        </div>
+        <p class="level-analysis-upload__description">Sınavı kağıt üzerinde çözebilir, ardından sayfaların fotoğrafını telefonundan seçebilirsin.</p>
+        <div class="level-analysis-upload-grid">
+          <label class="level-analysis-upload-slot" data-analysis-upload-slot="1">
+            <span>Çözüm Sayfası 1</span>
+            <input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" data-analysis-file-input="1" />
+            <span class="level-analysis-upload-slot__preview" data-analysis-preview="1">Fotoğraf seç veya sürükle</span>
+          </label>
+          <label class="level-analysis-upload-slot" data-analysis-upload-slot="2">
+            <span>Çözüm Sayfası 2</span>
+            <input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" data-analysis-file-input="2" />
+            <span class="level-analysis-upload-slot__preview" data-analysis-preview="2">Fotoğraf seç veya sürükle</span>
+          </label>
+          <label class="level-analysis-upload-slot" data-analysis-upload-slot="3">
+            <span>Çözüm Sayfası 3</span>
+            <input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" data-analysis-file-input="3" />
+            <span class="level-analysis-upload-slot__preview" data-analysis-preview="3">Fotoğraf seç veya sürükle</span>
+          </label>
+        </div>
+        <p class="level-analysis-step__status" data-analysis-upload-status role="status" aria-live="polite"></p>
+          <button class="button button--primary button--medium" type="button" data-analysis-submit>Çözümlerimi Gönder</button>
+          <p class="level-analysis-step__status" data-analysis-submit-status role="status" aria-live="polite"></p>
+          <a class="button button--outline button--medium" href="/seviye-analizi/rapor/" data-analysis-report-link hidden>Raporumu Görüntüle</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- INCLUDE FOOTER -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* ============================================================================
+   DARK MODE — Design Tokens
+   Sprint 6'da `theme-toggle.js` işlevsel olarak tamamlanmış ama bu dosya
+   yazılmadığı için hiçbir görsel karşılığı yoktu (Sprint 6 notu). Bu dosya
+   o açığı kapatır.
+
+   MİMARİ KARAR: gray-50…950 nötr skalası burada TERSİNE çevrilir. Bu güvenli
+   bir hamledir çünkü Sprint 13'te üç "her zaman koyu kalması gereken" bileşen
+   (Secondary buton, Skip Link, Newsletter bloğu) `--color-ink-fixed`
+   tokenine taşındı — artık gray-900 ile bağları yok, ters çevirmeden
+   etkilenmezler (bkz. base/variables.css).
+
+   Skala tersine çevrilince, TÜM bileşenler otomatik uyum sağlar: hem
+   semantik tokenler (--color-background vb., zaten gray-*'e referans
+   veriyordu) hem de bileşenlerin doğrudan kullandığı ham gray-100/200/300
+   gibi değerler (hover zemini, kenarlık, kod bloğu zemini vb.) — tek tek
+   her component dosyasını değiştirmeye gerek kalmadı.
+   ============================================================================ */
+
+:root[data-theme='dark'] {
+
+  /* ------------------------------------------------------------------------
+     NÖTR SKALA — ışık tersine çevrildi (50 = zemine yakın, 900 = metne yakın
+     anlamı KORUNUR; yalnızca hangi tonun "açık" hangisinin "koyu" olduğu değişir)
+     ---------------------------------------------------------------------- */
+  --color-gray-50:  #101215;
+  --color-gray-100: #191C20;
+  --color-gray-200: #262A30;
+  --color-gray-300: #343941;
+  --color-gray-400: #4B515B;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #9AA1AD;
+  --color-gray-700: #B8BEC7;
+  --color-gray-800: #D8DBDF;
+  --color-gray-900: #F2F2F0;
+  --color-gray-950: #FFFFFF;
+
+  /* ------------------------------------------------------------------------
+     YÜZEY — kartlar sayfa zemininden hafifçe AÇIK olmalı (koyu arayüzlerde
+     "yükselti" bunu ifade eder — light mode'daki tam tersi mantık)
+     ---------------------------------------------------------------------- */
+  --color-background: var(--color-gray-50);
+  --color-surface:    #1A1D22;
+  --color-border:     var(--color-gray-200);
+  --color-divider:    var(--color-gray-100);
+
+  --color-text-primary:   var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted:     var(--color-gray-500);
+
+  /* ------------------------------------------------------------------------
+     ACCENT — buton dolgusu (accent-500) her iki temada da aynı kalır
+     (dolgu rengi/beyaz metin kontrastı temadan bağımsızdır). Ama METİN
+     rengi olarak kullanılan tonlar (link, kod vurgusu, teorem etiketi)
+     koyu zeminde okunabilirlik için AÇIK tonlara kayar.
+     ---------------------------------------------------------------------- */
+  --color-link:           var(--color-accent-300); /* #8FADF7 — koyu zeminde yeterli kontrast */
+  --color-link-visited:   var(--color-accent-200);
+  --color-hover:          var(--color-accent-300);
+  --color-selection-bg:   rgba(143, 173, 247, 0.25);
+  --color-selection-text: var(--color-gray-900);
+
+  /* Metin olarak kullanılan accent-600/700 tonları (kod sözdizimi, teorem
+     kutusu etiketi, "Alıştırma" başlığı) — karanlıkta okunaklı hâle getirilir */
+  --color-accent-600: #8FADF7; /* ~ light'taki accent-300 */
+  --color-accent-700: #B9CDFB; /* ~ light'taki accent-200 */
+
+  /* ------------------------------------------------------------------------
+     SEMANTİK RENKLER — temel tonlar (Success/Warning/Error/Info) aynı kalır,
+     yalnızca "bg" (pastel zemin) tonları koyu zeminde ŞEFFAF/DÜŞÜK OPAKLIK
+     versiyonlara döner — aksi hâlde açık pastel bir kutu koyu sayfada
+     "delik" gibi parlar.
+     ---------------------------------------------------------------------- */
+  --color-success-bg: rgba(30, 142, 90, 0.16);
+  --color-warning-bg: rgba(183, 121, 31, 0.16);
+  --color-error-bg:   rgba(192, 54, 44, 0.16);
+  --color-info-bg:    rgba(45, 111, 201, 0.18);
+
+  /* ------------------------------------------------------------------------
+     GÖLGE — açık gölgeler koyu zeminde görünmez; siyah bazlı, daha yüksek
+     opaklıklı gölgelere geçilir
+     ---------------------------------------------------------------------- */
+  --shadow-xs:       0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-sm:       0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md:       0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg:       0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl:       0 16px 48px rgba(0, 0, 0, 0.55);
+  --shadow-floating: 0 6px 16px rgba(0, 0, 0, 0.4);
+  --shadow-modal:    0 16px 48px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-dropdown: var(--shadow-lg);
+}
+
+/*
+  Sistem tercihi (prefers-color-scheme) — kullanıcı `theme-toggle.js` ile
+  MANUEL bir seçim yapmadıysa (localStorage boşsa), tarayıcı/işletim
+  sistemi tercihi otomatik uygulanır. JS zaten bu mantığı uyguluyordu
+  (Sprint 6 `theme-toggle.js` → `applyStoredOrSystemPreference()`); bu
+  medya sorgusu yalnızca JS çalışmadan ÖNCEKİ ilk boya anında (ilk
+  render'da) FOUC — yanlış temayla kısa süreli görünmeyi — azaltır.
+*/
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark; /* tarayıcı form kontrolleri, scrollbar vb. yerel UI'ı da koyulaştırır */
+}

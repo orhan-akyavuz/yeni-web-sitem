@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giriş Yap | Matematik Dünyam</title>
+  <meta name="description" content="Matematik Dünyam hesabınıza giriş yapın veya yeni hesap oluşturun." />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <!-- INCLUDE HEADER -->
+  <main id="main-content" class="auth-page" data-auth-page>
+    <div class="auth-panel container--narrow">
+      <p class="weekly-problem__eyebrow">Matematik Dünyam</p>
+      <h1>Öğrenme yolculuğuna devam et</h1>
+      <div class="auth-tabs" role="tablist" aria-label="Hesap işlemleri">
+        <button class="auth-tabs__tab auth-tabs__tab--active" type="button" role="tab" aria-selected="true" data-auth-tab="signin">Giriş yap</button>
+        <button class="auth-tabs__tab" type="button" role="tab" aria-selected="false" data-auth-tab="signup">Hesap oluştur</button>
+      </div>
+      <form class="auth-form" data-auth-form="signin">
+        <div class="form-field"><label class="form-label" for="signin-email">E-posta</label><input class="input" id="signin-email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="form-field"><label class="form-label" for="signin-password">Şifre</label><input class="input" id="signin-password" name="password" type="password" autocomplete="current-password" required minlength="8" /></div>
+        <button class="button button--primary button--large" type="submit">Giriş yap</button>
+      </form>
+      <form class="auth-form" data-auth-form="signup" hidden>
+        <div class="form-field"><label class="form-label" for="signup-name">Görünen ad</label><input class="input" id="signup-name" name="displayName" autocomplete="nickname" required /></div>
+        <div class="form-field"><label class="form-label" for="signup-email">E-posta</label><input class="input" id="signup-email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="form-field"><label class="form-label" for="signup-password">Şifre</label><input class="input" id="signup-password" name="password" type="password" autocomplete="new-password" required minlength="8" /></div>
+        <button class="button button--primary button--large" type="submit">Hesap oluştur</button>
+      </form>
+      <p class="auth-status" data-auth-status role="status" aria-live="polite"></p>
+    </div>
+  </main>
+  <!-- INCLUDE FOOTER -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

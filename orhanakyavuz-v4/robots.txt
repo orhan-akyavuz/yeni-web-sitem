@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /blog/?q=
+
+Sitemap: https://orhanakyavuz.com/sitemap.xml

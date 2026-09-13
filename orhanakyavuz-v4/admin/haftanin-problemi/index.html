@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Problem Yönetimi | Matematik Dünyam</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <!-- INCLUDE HEADER -->
+  <main id="main-content" class="admin-weekly-page" data-admin-weekly-page>
+    <div class="container">
+      <header class="admin-weekly-header">
+        <p class="weekly-problem__eyebrow">Yönetim paneli</p>
+        <h1>Haftanın Problemi</h1>
+        <p>Problemleri hazırla, yayınla ve öğrenci çözümlerini değerlendir.</p>
+        <p><a class="button button--outline button--small" href="/admin/seviye-analizleri/">Seviye Analizleri</a></p>
+      </header>
+      <p class="admin-weekly-status" data-admin-status role="status" aria-live="polite"></p>
+      <div class="admin-weekly-layout">
+        <section class="admin-weekly-form-panel" aria-labelledby="admin-form-heading">
+          <h2 id="admin-form-heading">Yeni problem</h2>
+          <form class="admin-weekly-form" data-admin-form>
+            <input type="hidden" name="id" />
+            <div class="form-field"><label class="form-label" for="admin-slug">Slug</label><input class="input" id="admin-slug" name="slug" required /></div>
+            <div class="form-field"><label class="form-label" for="admin-title">Başlık</label><input class="input" id="admin-title" name="title" required /></div>
+            <div class="form-field"><label class="form-label" for="admin-topic">Konu</label><input class="input" id="admin-topic" name="topic" required /></div>
+            <div class="admin-weekly-form__row">
+              <div class="form-field"><label class="form-label" for="admin-grade">Seviye</label><input class="input" id="admin-grade" name="gradeLevel" required /></div>
+              <div class="form-field"><label class="form-label" for="admin-difficulty">Zorluk</label><select class="select" id="admin-difficulty" name="difficulty"><option value="easy">Kolay</option><option value="medium">Orta</option><option value="hard">Zor</option></select></div>
+            </div>
+            <div class="form-field"><label class="form-label" for="admin-problem-content">Problem metni (Markdown/LaTeX)</label><textarea class="textarea" id="admin-problem-content" name="problemContent" required rows="8"></textarea></div>
+            <div class="form-field"><label class="form-label" for="admin-solution-content">Çözüm metni (Markdown/LaTeX)</label><textarea class="textarea" id="admin-solution-content" name="solutionContent" rows="6"></textarea></div>
+            <div class="form-field"><label class="form-label" for="admin-answer-key">Cevap anahtarı</label><input class="input" id="admin-answer-key" name="answerKey" required /></div>
+            <div class="admin-weekly-form__row">
+              <div class="form-field"><label class="form-label" for="admin-published-at">Yayın tarihi</label><input class="input" id="admin-published-at" name="publishedAt" type="datetime-local" required /></div>
+              <div class="form-field"><label class="form-label" for="admin-ends-at">Bitiş tarihi</label><input class="input" id="admin-ends-at" name="endsAt" type="datetime-local" required /></div>
+            </div>
+            <div class="form-field"><label class="form-label" for="admin-status">Durum</label><select class="select" id="admin-status" name="status"><option value="draft">Taslak</option><option value="published">Yayınla</option><option value="archived">Arşivle</option></select></div>
+            <div class="admin-weekly-form__actions"><button class="button button--primary button--medium" type="submit">Problemi Kaydet</button><button class="button button--outline button--medium" type="button" data-admin-reset>Temizle</button></div>
+          </form>
+        </section>
+        <section class="admin-weekly-list-panel" aria-labelledby="admin-list-heading">
+          <div class="section-header"><h2 id="admin-list-heading" class="section-header__title">Problemler</h2><span class="admin-weekly-count" data-admin-count>0</span></div>
+          <div class="admin-weekly-list" data-admin-list><p>Problemler yükleniyor...</p></div>
+          <div class="admin-submissions" data-admin-submissions hidden>
+            <h2>Gönderiler</h2>
+            <div data-admin-submission-list></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <!-- INCLUDE FOOTER -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

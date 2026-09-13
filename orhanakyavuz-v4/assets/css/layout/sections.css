@@ -1,0 +1,399 @@
+/* ============================================================================
+   SECTIONS — Sayfa Bölümü Düzeni ve Dikey Ritim
+   Sprint 2 § 1.2 (section aralığı) ve Sprint 3'teki 11 bölümün
+   yerleşim kurallarının CSS karşılığı.
+
+   Not: Plain CSS'te mixin olmadığı için, "container" davranışı
+   (max-width + padding-inline + margin-inline:auto) birkaç section
+   selector'ünde tekrar eder. Bu bilinçli bir tercihtir — bir
+   ön-işlemci (Sass/PostCSS) eklenirse bu tekrar `@mixin container`
+   ile tek satıra iner; şimdilik okunabilirlik netlik kazandırıyor.
+   ============================================================================ */
+
+/* ------------------------------------------------------------------------
+   GENEL DİKEY RİTİM
+   Sprint 2 § 1.2: Mobil 64px · Tablet 80px · Laptop/Desktop 96–120px
+   Tüm ana içerik section'larına ortak uygulanır (Navbar ve Footer hariç
+   — onların kendi component dosyalarında özel kuralları var).
+   ---------------------------------------------------------------------- */
+.latest-posts,
+.featured-articles,
+.categories,
+.about-summary,
+.services,
+.stats,
+.newsletter,
+.contact,
+.youtube-content {
+  padding-block: var(--space-16); /* 64px — Mobil */
+}
+
+@media (min-width: 768px) {
+  .latest-posts,
+  .featured-articles,
+  .categories,
+  .about-summary,
+  .services,
+  .stats,
+  .newsletter,
+  .contact,
+  .youtube-content {
+      padding-block: var(--space-20); /* 80px — Tablet */
+    }
+
+}
+
+@media (min-width: 1024px) {
+  .latest-posts,
+  .featured-articles,
+  .categories,
+  .about-summary,
+  .services,
+  .stats,
+  .newsletter,
+  .contact,
+  .youtube-content {
+      padding-block: var(--space-24); /* 96px — Laptop */
+    }
+
+}
+
+/* ------------------------------------------------------------------------
+   ORTAK CONTAINER DAVRANIŞI (yatay padding + max-width)
+   Standart genişlikteki section'lar için tek grupta tanımlanır.
+   ---------------------------------------------------------------------- */
+.latest-posts,
+.featured-articles,
+.categories,
+.about-summary,
+.services,
+.stats,
+.youtube-content {
+  padding-inline: var(--space-5);
+  margin-inline: auto;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .latest-posts, .featured-articles, .categories,
+  .about-summary, .services, .stats, .youtube-content {
+    padding-inline: var(--space-10);
+  }
+}
+@media (min-width: 1024px) {
+  .latest-posts, .featured-articles, .categories,
+  .about-summary, .services, .stats, .youtube-content {
+    padding-inline: var(--space-16);
+    max-width: calc(var(--container-max) + 2 * var(--space-16));
+  }
+}
+@media (min-width: 1920px) {
+  .latest-posts, .featured-articles, .categories,
+  .about-summary, .services, .stats, .youtube-content {
+    max-width: calc(var(--container-wide-cap) + 2 * var(--space-16));
+  }
+}
+
+/* ------------------------------------------------------------------------
+   SECTION HEADER — başlık + "Tümünü Gör" satırı (Son Yazılar, Öne Çıkanlar)
+   ---------------------------------------------------------------------- */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10); /* 40px */
+}
+
+.section-header__title {
+  color: var(--color-text-primary);
+}
+
+.section-header__title--centered {
+  width: 100%;
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+/* ------------------------------------------------------------------------
+   2. HERO — Tanım ve düzen components/hero.css içinde yönetilir.
+   ---------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------------
+   4. ÖNE ÇIKAN MAKALELER — hafif zemin farkı ile "özel seçki" hissi
+   Sprint 3 § 4: Bölümün arka planı Gray 50, tam viewport genişliğinde
+   ---------------------------------------------------------------------- */
+.featured-articles {
+  background-color: var(--color-gray-50);
+  max-width: 100%; /* zemin viewport'u kaplasın */
+}
+.featured-articles__grid {
+  display: grid;
+  gap: var(--space-6);
+  max-width: calc(var(--container-max) + 2 * var(--space-16));
+  margin-inline: auto;
+}
+@media (min-width: 1024px) {
+  .featured-articles__grid {
+    grid-template-columns: 1.618fr 1fr; /* Golden ratio referansı — Sprint 2 §14 */
+    align-items: start;
+  }
+}
+.featured-articles__secondary-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ------------------------------------------------------------------------
+   5. KATEGORİLER — Sprint 3 § 5
+   ---------------------------------------------------------------------- */
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ------------------------------------------------------------------------
+   6. HAKKIMDA — Sprint 3 § 6
+   ---------------------------------------------------------------------- */
+.about-summary {
+  display: grid;
+  gap: var(--space-8);
+}
+@media (min-width: 768px) {
+  .about-summary {
+    grid-template-columns: 320px 1fr;
+    align-items: center;
+    gap: var(--space-16); /* 64px */
+  }
+}
+.about-summary__figure {
+  justify-self: center;
+}
+@media (min-width: 768px) {
+  .about-summary__figure { justify-self: start; }
+}
+.about-summary__image {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  .about-summary__image { width: 100%; height: auto; aspect-ratio: 4 / 5; }
+}
+.about-summary__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .about-summary__content { text-align: left; }
+}
+/* Sprint 14 — audit'te tespit edilen eksik sınıf (.text-overline ile aynı görsel dil) */
+.about-summary__eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-500);
+}
+.about-summary__title { margin-top: var(--space-1); }
+.about-summary__bio { color: var(--color-text-secondary); }
+.about-summary__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 var(--space-2);
+}
+
+/* ------------------------------------------------------------------------
+   7. ÇALIŞMA ALANLARI — Sprint 3 § 7
+   ---------------------------------------------------------------------- */
+.services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ------------------------------------------------------------------------
+   8. İSTATİSTİKLER — Sprint 3 § 8, <dl> tabanlı, yatay şerit
+   ---------------------------------------------------------------------- */
+.stats__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .stats__list { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ------------------------------------------------------------------------
+   9. ABONE OL — koyu zemin, sitedeki tek yüksek kontrast alan
+   Sprint 3 § 9
+   ---------------------------------------------------------------------- */
+.newsletter {
+  background-color: var(--color-ink-fixed);
+  color: #FFFFFF;
+  text-align: center;
+  max-width: 100%;
+  padding-inline: var(--space-5);
+}
+.newsletter__eyebrow {
+  color: var(--color-accent-300); /* koyu zeminde okunabilirlik için açık ton */
+}
+.newsletter__title {
+  color: #FFFFFF;
+  margin-top: var(--space-3);
+}
+.newsletter__description {
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+.newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 420px;
+  margin-inline: auto;
+}
+@media (min-width: 640px) {
+  .newsletter__form {
+    flex-direction: row;
+  }
+}
+/* Sprint 16 — önceden newsletter-validation.js içinde satır içi stildi;
+   koyu zemin (Abone Ol bölümü) üzerinde form-hint okunabilirliği için */
+.newsletter__form .form-hint {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ------------------------------------------------------------------------
+   10. İLETİŞİM — dar, odaklı sütun
+   Sprint 3 § 10
+   ---------------------------------------------------------------------- */
+.contact {
+  max-width: 560px;
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+/* Sprint 14 — audit'te tespit edilen eksik sınıflar */
+.contact__eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-500);
+}
+.contact__title {
+  color: var(--color-text-primary);
+}
+.contact__social-list {
+  display: flex;
+  gap: var(--space-4);
+}
+
+/* ------------------------------------------------------------------------
+   11. YOUTUBE CONTENT — Profesyonel Video Grid
+   ---------------------------------------------------------------------- */
+.youtube-content {
+  background-color: var(--color-gray-50);
+}
+
+.youtube-content .section-header {
+  margin-bottom: var(--space-12);
+}
+
+.youtube-grid {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .youtube-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .youtube-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-12);
+  }
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: #fff;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.video-card__wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-ink-fixed);
+}
+
+.video-card__wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.button--youtube {
+  background-color: #FF0000;
+  color: #FFFFFF;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.button--youtube:hover {
+  background-color: #CC0000;
+  color: #FFFFFF;
+}
+
+.button--youtube img {
+  filter: brightness(0) invert(1);
+}

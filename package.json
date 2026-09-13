@@ -1,0 +1,13 @@
+{
+  "name": "orhanakyavuz-frontend-build",
+  "version": "1.0.0",
+  "description": "orhanakyavuz.com statik sitesi için üretim (production) derleme araç zinciri — CSS/JS minify + bundle. Site geliştirme sırasında bu araç OLMADAN da doğrudan kaynak dosyalardan (assets/css/main.css, assets/js/main.js) çalışır; bu yalnızca yayına almadan önce isteğe bağlı bir optimizasyon adımıdır (bkz. Sprint 9 Production Readiness dokümanı, §2.4-2.5).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

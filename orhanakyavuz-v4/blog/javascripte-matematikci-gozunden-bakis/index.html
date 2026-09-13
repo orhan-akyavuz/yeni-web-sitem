@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript'e Matematikçi Gözünden Bakış — orhanakyavuz</title>
+  <meta name="description" content="Matematik geçmişi olan biri için JavaScript öğrenmek, beklenenden daha tanıdık kavramlarla dolu." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Orhan Akyavuz" />
+  <link rel="canonical" href="https://orhanakyavuz.com/blog/javascripte-matematikci-gozunden-bakis/" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAFAF8" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="orhanakyavuz" />
+  <meta property="og:title" content="JavaScript'e Matematikçi Gözünden Bakış — orhanakyavuz" />
+  <meta property="og:description" content="Matematik geçmişi olan biri için JavaScript öğrenmek, beklenenden daha tanıdık kavramlarla dolu." />
+  <meta property="og:image" content="https://orhanakyavuz.com/assets/images/og/og-cover.jpg" />
+  <meta property="og:url" content="https://orhanakyavuz.com/blog/javascripte-matematikci-gozunden-bakis/" />
+  <meta property="og:locale" content="tr_TR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JavaScript'e Matematikçi Gözünden Bakış — orhanakyavuz" />
+  <meta name="twitter:description" content="Matematik geçmişi olan biri için JavaScript öğrenmek, beklenenden daha tanıdık kavramlarla dolu." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "JavaScript'e Matematikçi Gözünden Bakış — orhanakyavuz",
+    "description": "Matematik geçmişi olan biri için JavaScript öğrenmek, beklenenden daha tanıdık kavramlarla dolu.",
+    "url": "https://orhanakyavuz.com/blog/javascripte-matematikci-gozunden-bakis/",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://orhanakyavuz.com/blog/javascripte-matematikci-gozunden-bakis/" },
+    "image": "https://orhanakyavuz.com/assets/images/og/og-cover.jpg",
+    "datePublished": "2026-08-05",
+    "dateModified": "2026-08-05",
+    "inLanguage": "tr-TR",
+    "author": {
+      "@type": "Person",
+      "name": "Orhan Akyavuz",
+      "url": "https://orhanakyavuz.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Orhan Akyavuz",
+      "url": "https://orhanakyavuz.com/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+
+  <!-- INCLUDE HEADER: header.html -->
+
+  <main id="main-content">
+
+      <nav class="breadcrumb" aria-label="İçerik yolu">
+    <ol class="breadcrumb__list">
+      <li class="breadcrumb__item"><a class="breadcrumb__link" href="/">Ana Sayfa</a><span class="breadcrumb__separator" aria-hidden="true"><img src="/assets/icons/chevron-right.svg" alt="" width="14" height="14" /></span></li>
+      <li class="breadcrumb__item"><a class="breadcrumb__link" href="/pages/kategoriler/teknoloji.html">Teknoloji</a><span class="breadcrumb__separator" aria-hidden="true"><img src="/assets/icons/chevron-right.svg" alt="" width="14" height="14" /></span></li>
+      <li class="breadcrumb__item"><span class="breadcrumb__current" aria-current="page">JavaScript'e Matematikçi Gözünden Bakış</span></li>
+    </ol>
+  </nav>
+
+
+    <article>
+      <header class="article-header">
+        <p class="text-overline">Teknoloji</p>
+        <h1 class="text-h1">JavaScript'e Matematikçi Gözünden Bakış</h1>
+        <p class="article-header__subtitle">Matematik geçmişi olan biri için JavaScript öğrenmek, beklenenden daha tanıdık kavramlarla dolu.</p>
+
+        <div class="article-meta">
+          <img class="article-meta__avatar" src="/assets/images/about/portre.jpg" alt="" width="40" height="40" />
+          <div>
+            <p class="article-meta__author">Orhan Akyavuz</p>
+            <p class="article-meta__details">
+              <img src="/assets/icons/calendar.svg" alt="" aria-hidden="true" />
+              <time datetime="2026-08-05">5 Ağustos 2026</time>
+              <span aria-hidden="true">·</span>
+              <img src="/assets/icons/clock.svg" alt="" aria-hidden="true" />
+              7 dk okuma
+            </p>
+          </div>
+        </div>
+
+        <div class="article-header__tags">
+          <a class="badge" href="/pages/etiketler/javascript.html">#JavaScript</a>
+          <a class="badge" href="/pages/etiketler/programlama.html">#Programlama</a>
+          <a class="badge" href="/pages/etiketler/teknoloji.html">#Teknoloji</a>
+        </div>
+      </header>
+
+      <div class="article-layout">
+        <div class="article-body">
+          <nav class="toc-mobile" aria-label="İçindekiler">
+            <button type="button" class="toc-mobile__trigger" aria-expanded="false">
+              İçindekiler
+              <img src="/assets/icons/chevron-down.svg" alt="" width="16" height="16" aria-hidden="true" />
+            </button>
+            <div class="toc-mobile__panel" hidden>
+              <ul class="toc__list">
+                <li><a class="toc__link" href="#giris">Giriş</a></li>
+                <li><a class="toc__link" href="#fonksiyonlar">Fonksiyonlar Vatandaştır</a></li>
+                <li><a class="toc__link" href="#kumeler">Küme İşlemleri</a></li>
+                <li><a class="toc__link" href="#sonuc">Sonuç</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="prose">
+
+            <h2 id="giris">Giriş</h2>
+            <p>
+              Matematik geçmişi olan biri için programlamaya geçiş genellikle
+              "sıfırdan yeni bir dil" gibi sunulur. Oysa fonksiyonlar, kümeler ve
+              dönüşümler gibi tanıdık kavramlar JavaScript'te de karşımıza çıkar.
+            </p>
+
+            <h2 id="fonksiyonlar">Fonksiyonlar Vatandaştır</h2>
+            <p>
+              JavaScript'te fonksiyonlar birinci sınıf değerlerdir — tıpkı
+              matematikte bir fonksiyonu başka bir fonksiyona girdi olarak
+              verebilmemiz gibi ($g(f(x))$ bileşkesi gibi düşünün).
+            </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__lang"><img src="/assets/icons/code.svg" alt="" width="16" height="16" aria-hidden="true" />JavaScript</span>
+          <button type="button" class="code-block__copy" aria-label="Kodu kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="14" height="14" aria-hidden="true" />
+            <span class="code-block__copy-label">Kopyala</span>
+          </button>
+        </div>
+        <pre><code class="code-block__line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8</code><code>const kare = (x) =&gt; x ** 2;
+const birEkle = (x) =&gt; x + 1;
+
+// Fonksiyon bileşkesi: matematikteki (g ∘ f)(x) = g(f(x)) ile birebir aynı fikir
+const bileske = (f, g) =&gt; (x) =&gt; g(f(x));
+
+const kareSonraBirEkle = bileske(kare, birEkle);
+console.log(kareSonraBirEkle(3)); // 3² + 1 = 10</code></pre>
+      </div>
+
+
+            <h2 id="kumeler">Küme İşlemleri</h2>
+            <p>
+              JavaScript'in yerleşik <code>Set</code> nesnesi, matematikteki küme
+              kavramını (tekrar etmeyen elemanlar) doğrudan karşılar; birleşim ve
+              kesişim işlemleri birkaç satırda ifade edilebilir.
+            </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__lang"><img src="/assets/icons/code.svg" alt="" width="16" height="16" aria-hidden="true" />JavaScript</span>
+          <button type="button" class="code-block__copy" aria-label="Kodu kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="14" height="14" aria-hidden="true" />
+            <span class="code-block__copy-label">Kopyala</span>
+          </button>
+        </div>
+        <pre><code class="code-block__line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8</code><code>const A = new Set([1, 2, 3, 4]);
+const B = new Set([3, 4, 5, 6]);
+
+const birlesim = new Set([...A, ...B]);
+const kesisim = new Set([...A].filter((x) =&gt; B.has(x)));
+
+console.log([...birlesim]); // [1, 2, 3, 4, 5, 6]
+console.log([...kesisim]);  // [3, 4]</code></pre>
+      </div>
+
+
+            <div class="content-box content-box--example">
+              <p class="content-box__label">ÖRNEK</p>
+              <p>
+                <code>map</code>, bir kümenin her elemanına bir fonksiyon
+                uygulayıp yeni bir küme üretmenin (matematikteki $f: A \to B$
+                dönüşümünün) doğrudan programlama karşılığıdır.
+              </p>
+            </div>
+
+            <h2 id="sonuc">Sonuç</h2>
+            <p>
+              Programlamayı "yeni bir dünya" olarak değil, zaten bildiğiniz
+              matematiksel kavramların farklı bir gösterimi olarak görmek,
+              öğrenme sürecini önemli ölçüde hızlandırır.
+            </p>
+          </div>
+        </div>
+
+        <aside class="toc" aria-label="İçindekiler">
+          <p class="toc__title">İçindekiler</p>
+          <ul class="toc__list">
+                <li><a class="toc__link" href="#giris">Giriş</a></li>
+                <li><a class="toc__link" href="#fonksiyonlar">Fonksiyonlar Vatandaştır</a></li>
+                <li><a class="toc__link" href="#kumeler">Küme İşlemleri</a></li>
+                <li><a class="toc__link" href="#sonuc">Sonuç</a></li>
+          </ul>
+        </aside>
+      </div>
+
+      <footer class="article-footer">
+        <div class="article-footer__tags">
+          <a class="badge" href="/pages/etiketler/javascript.html">#JavaScript</a>
+          <a class="badge" href="/pages/etiketler/programlama.html">#Programlama</a>
+          <a class="badge" href="/pages/etiketler/teknoloji.html">#Teknoloji</a>
+        </div>
+
+        <div class="article-footer__share">
+          <span>Paylaş:</span>
+          <button type="button" class="button button--icon" data-copy-link aria-label="Bağlantıyı kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="18" height="18" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div class="author-card">
+          <img class="author-card__avatar" src="/assets/images/about/portre.jpg" alt="" width="64" height="64" />
+          <div>
+            <p class="author-card__name">Orhan Akyavuz</p>
+            <p class="author-card__role">Matematik Eğitmeni</p>
+            <p class="author-card__bio">Uludağ Üniversitesi Matematik mezunu, matematik ve veri analizi üzerine yazıyor.</p>
+            <a class="button button--text author-card__link" href="/pages/hakkimda.html">Tüm Yazılarını Gör <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <nav class="article-nav" aria-label="Makale gezinme">
+          <a class="article-nav__link article-nav__link--prev" href="/blog/aralikli-tekrar-nedir/">
+            <span class="article-nav__direction"><img src="/assets/icons/arrow-left.svg" alt="" aria-hidden="true" /> Önceki</span>
+            <span class="article-nav__title">Öğrenme Bilimi: Aralıklı Tekrar Nedir?</span>
+          </a>
+          <a class="article-nav__link article-nav__link--next" href="/blog/fonksiyonel-programlamanin-matematiksel-kokenleri/">
+            <span class="article-nav__direction">Sonraki <img src="/assets/icons/arrow-right.svg" alt="" aria-hidden="true" /></span>
+            <span class="article-nav__title">Fonksiyonel Programlamanın Matematiksel Kökenleri</span>
+          </a>
+        </nav>
+
+        <h2 class="text-h3 article-footer__related-title">Benzer Yazılar</h2>
+        <ul class="article-card-grid mb-10" role="list">
+          <li>
+            <article class="article-card">
+              <a class="article-card__link" href="/blog/fonksiyonel-programlamanin-matematiksel-kokenleri/">
+                <img class="article-card__image" src="/assets/images/articles/placeholder-09.jpg" alt="" width="376" height="212" loading="lazy" decoding="async" />
+                <span class="article-card__category">Teknoloji</span>
+                <h3 class="article-card__title">Fonksiyonel Programlamanın Matematiksel Kökenleri</h3>
+                <p class="article-card__excerpt">map, filter, reduce kavramları lambda hesabına kadar uzanır.</p>
+                <p class="article-card__meta"><time datetime="2026-08-06">6 Ağu 2026</time><span aria-hidden="true">·</span><span>9 dk okuma</span></p>
+              </a>
+            </article>
+          </li>
+          <li>
+            <article class="article-card">
+              <a class="article-card__link" href="/blog/python-ile-veri-temizleme/">
+                <img class="article-card__image" src="/assets/images/articles/placeholder-02.jpg" alt="" width="376" height="212" loading="lazy" decoding="async" />
+                <span class="article-card__category">Veri Analizi</span>
+                <h3 class="article-card__title">Python ile Veri Temizleme: Pratik Bir Rehber</h3>
+                <p class="article-card__excerpt">Gerçek dünya verisi nadiren temizdir.</p>
+                <p class="article-card__meta"><time datetime="2026-07-28">28 Tem 2026</time><span aria-hidden="true">·</span><span>7 dk okuma</span></p>
+              </a>
+            </article>
+          </li>
+          <li>
+            <article class="article-card">
+              <a class="article-card__link" href="/blog/sql-performans-ipuclari/">
+                <img class="article-card__image" src="/assets/images/articles/placeholder-04.jpg" alt="" width="376" height="212" loading="lazy" decoding="async" />
+                <span class="article-card__category">Python & SQL</span>
+                <h3 class="article-card__title">SQL Sorgularında Performans İpuçları</h3>
+                <p class="article-card__excerpt">Doğru index, doğru JOIN sırası.</p>
+                <p class="article-card__meta"><time datetime="2026-07-10">10 Tem 2026</time><span aria-hidden="true">·</span><span>6 dk okuma</span></p>
+              </a>
+            </article>
+          </li>
+        </ul>
+
+        <div class="comments-placeholder">
+          <p>Yorumlar (0)</p>
+          <p>Yorum sistemi yakında aktif olacak.</p>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- INCLUDE FOOTER: footer.html -->
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

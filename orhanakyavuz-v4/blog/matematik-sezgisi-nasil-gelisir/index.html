@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ortalama Değer Teoremi ve Matematiksel Sezgi — orhanakyavuz</title>
+  <meta name="description" content="Ortalama Değer Teoremi'nin ispatı, sezgisel yorumu ve Python ile sayısal doğrulaması — adım adım, kutulu bir akademik anlatım." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Orhan Akyavuz" />
+  <link rel="canonical" href="https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAFAF8" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="orhanakyavuz" />
+  <meta property="og:title" content="Ortalama Değer Teoremi ve Matematiksel Sezgi — orhanakyavuz" />
+  <meta property="og:description" content="Ortalama Değer Teoremi'nin ispatı, sezgisel yorumu ve Python ile sayısal doğrulaması — adım adım, kutulu bir akademik anlatım." />
+  <meta property="og:image" content="https://orhanakyavuz.com/assets/images/og/og-cover.jpg" />
+  <meta property="og:url" content="https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/" />
+  <meta property="og:locale" content="tr_TR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ortalama Değer Teoremi ve Matematiksel Sezgi — orhanakyavuz" />
+  <meta name="twitter:description" content="Ortalama Değer Teoremi'nin ispatı, sezgisel yorumu ve Python ile sayısal doğrulaması — adım adım, kutulu bir akademik anlatım." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ortalama Değer Teoremi ve Matematiksel Sezgi",
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15",
+    "author": {
+      "@type": "Person",
+      "name": "Orhan Akyavuz",
+      "url": "https://orhanakyavuz.com/pages/hakkimda.html"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Orhan Akyavuz"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/"
+    },
+    "articleSection": "Matematik",
+    "inLanguage": "tr"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://orhanakyavuz.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Matematik", "item": "https://orhanakyavuz.com/pages/kategoriler/" },
+      { "@type": "ListItem", "position": 3, "name": "Ortalama Değer Teoremi ve Matematiksel Sezgi", "item": "https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Ortalama Değer Teoremi ve Matematiksel Sezgi — orhanakyavuz",
+    "description": "Ortalama Değer Teoremi'nin ispatı, sezgisel yorumu ve Python ile sayısal doğrulaması — adım adım, kutulu bir akademik anlatım.",
+    "url": "https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/" },
+    "image": "https://orhanakyavuz.com/assets/images/og/og-cover.jpg",
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15",
+    "inLanguage": "tr-TR",
+    "author": {
+      "@type": "Person",
+      "name": "Orhan Akyavuz",
+      "url": "https://orhanakyavuz.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Orhan Akyavuz",
+      "url": "https://orhanakyavuz.com/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+
+  <!-- INCLUDE HEADER: header.html -->
+
+  <main id="main-content">
+
+      <nav class="breadcrumb" aria-label="İçerik yolu">
+    <ol class="breadcrumb__list">
+      <li class="breadcrumb__item"><a class="breadcrumb__link" href="/">Ana Sayfa</a><span class="breadcrumb__separator" aria-hidden="true"><img src="/assets/icons/chevron-right.svg" alt="" width="14" height="14" /></span></li>
+      <li class="breadcrumb__item"><a class="breadcrumb__link" href="/pages/kategoriler/matematik.html">Matematik</a><span class="breadcrumb__separator" aria-hidden="true"><img src="/assets/icons/chevron-right.svg" alt="" width="14" height="14" /></span></li>
+      <li class="breadcrumb__item"><span class="breadcrumb__current" aria-current="page">Ortalama Değer Teoremi ve Matematiksel Sezgi</span></li>
+    </ol>
+  </nav>
+
+
+    <article>
+      <header class="article-header">
+        <p class="text-overline">Matematik</p>
+        <h1 class="text-h1">Ortalama Değer Teoremi ve Matematiksel Sezgi</h1>
+        <p class="article-header__subtitle">
+          Bir teoremi ezberlemekle onu gerçekten anlamak arasındaki fark,
+          çoğu zaman sezginin nasıl inşa edildiğinde saklıdır.
+        </p>
+
+        <div class="article-meta">
+          <img class="article-meta__avatar" src="/assets/images/about/portre.jpg" alt="" width="40" height="40" />
+          <div>
+            <p class="article-meta__author">Orhan Akyavuz</p>
+            <p class="article-meta__details">
+              <img src="/assets/icons/calendar.svg" alt="" aria-hidden="true" />
+              <time datetime="2026-07-15">15 Temmuz 2026</time>
+              <span aria-hidden="true">·</span>
+              <img src="/assets/icons/clock.svg" alt="" aria-hidden="true" />
+              9 dk okuma
+            </p>
+          </div>
+        </div>
+
+        <div class="article-header__tags">
+          <a class="badge" href="/pages/etiketler/matematik.html">#matematik</a>
+          <a class="badge" href="/pages/etiketler/ispat.html">#ispat</a>
+          <a class="badge" href="/pages/etiketler/kalkulus.html">#kalkülüs</a>
+        </div>
+      </header>
+
+      <div class="article-header__cover">
+        <img src="/assets/images/articles/placeholder-featured.jpg" alt="" width="1200" height="675" loading="eager" fetchpriority="high" />
+      </div>
+
+      <div class="article-layout">
+        <div class="article-body">
+
+          <!-- Mobil/Tablet: makale başında collapsible İçindekiler -->
+          <nav class="toc-mobile" aria-label="İçindekiler">
+            <button type="button" class="toc-mobile__trigger" aria-expanded="false">
+              İçindekiler
+              <img src="/assets/icons/chevron-down.svg" alt="" width="16" height="16" aria-hidden="true" />
+            </button>
+            <div class="toc-mobile__panel" hidden>
+              <ul class="toc__list">
+                <li><a class="toc__link" href="#giris">Giriş</a></li>
+                <li><a class="toc__link" href="#teorem">Ortalama Değer Teoremi</a></li>
+                <li><a class="toc__link toc__link--h3" href="#ispat">İspat</a></li>
+                <li><a class="toc__link" href="#ornek">Pratik Bir Örnek</a></li>
+                <li><a class="toc__link" href="#hatalar">Sık Yapılan Hatalar</a></li>
+                <li><a class="toc__link" href="#alistirmalar">Alıştırmalar</a></li>
+                <li><a class="toc__link" href="#kod-ornekleri">Kod Bloğu Örnekleri</a></li>
+                <li><a class="toc__link" href="#sonuc">Sonuç</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="prose">
+            <h2 id="giris">Giriş</h2>
+            <p>
+              Kalkülüsün en "sezgiyle çelişiyormuş gibi görünüp aslında son derece doğal"
+              teoremlerinden biri, Ortalama Değer Teoremi'dir (OD T). Formel ifadesi
+              öğrenciyi ilk bakışta ürkütebilir, ama teoremin arkasındaki fikir aslında
+              çok basittir: bir yolculukta ortalama hızınız neyse, yolun bir noktasında
+              tam olarak o hızda gitmiş olmalısınız.
+            </p>
+
+            <div class="content-box content-box--definition">
+              <p class="content-box__label">TANIM 1.1</p>
+              <p class="content-box__title">Sürekli ve Türevlenebilir Fonksiyon</p>
+              <p>
+                Bir <span>f</span> fonksiyonu <span>[a, b]</span> kapalı aralığında sürekli
+                ve <span>(a, b)</span> açık aralığında türevlenebilir ise, OD T'nin
+                koşulları sağlanmış olur.
+              </p>
+            </div>
+
+            <h2 id="teorem">Ortalama Değer Teoremi</h2>
+
+            <div class="content-box content-box--theorem">
+              <p class="content-box__label">TEOREM 1.2</p>
+              <p class="content-box__title">Ortalama Değer Teoremi (Lagrange)</p>
+              <p>
+                Eğer $f$, $[a, b]$ üzerinde sürekli ve $(a, b)$ üzerinde türevlenebilir
+                ise, öyle bir $c \in (a, b)$ noktası vardır ki:
+              </p>
+              <div class="math-block">
+                $$f'(c) = \frac{f(b) - f(a)}{b - a}$$
+              </div>
+              <p>
+                Yani, eğrinin $c$ noktasındaki teğetinin eğimi, $A(a, f(a))$ ve
+                $B(b, f(b))$ noktalarını birleştiren kirişin eğimine eşittir.
+              </p>
+            </div>
+
+      <div class="content-box content-box--proof" data-accordion>
+        <button type="button" class="accordion__trigger content-box__trigger" aria-expanded="false" aria-controls="proof-1" id="proof-1-trigger">
+          <span>İSPAT — Lagrange OD T</span>
+          <img src="/assets/icons/chevron-down.svg" alt="" width="16" height="16" aria-hidden="true" />
+        </button>
+        <div class="accordion__panel content-box__panel" id="proof-1" role="region" aria-labelledby="proof-1-trigger" hidden>
+
+            <p>
+              $g(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a)$ yardımcı
+              fonksiyonunu tanımlayalım. $g(a) = g(b) = 0$ olduğu kolayca görülür.
+            </p>
+            <p>
+              $g$, $f$ ile aynı süreklilik/türevlenebilirlik koşullarını sağlar.
+              Rolle Teoremi'ne göre, $g(a) = g(b)$ olduğundan öyle bir
+              $c \in (a, b)$ vardır ki $g'(c) = 0$.
+            </p>
+            <p>
+              $g'(x) = f'(x) - \frac{f(b) - f(a)}{b - a}$ olduğundan,
+              $g'(c) = 0$ eşitliği doğrudan teoremin ifadesini verir.
+            </p>
+          <span class="content-box__qed">∎</span>
+        </div>
+      </div>
+
+
+            <div class="content-box content-box--example">
+              <p class="content-box__label">ÖRNEK 1.3</p>
+              <p>
+                $f(x) = x^2$ fonksiyonunu $[1, 3]$ aralığında ele alalım.
+                Ortalama eğim $\frac{f(3)-f(1)}{3-1} = \frac{9-1}{2} = 4$'tür.
+                $f'(x) = 2x$ olduğundan, $2c = 4 \Rightarrow c = 2$ — ve $2 \in (1,3)$,
+                yani teorem doğrulanır.
+              </p>
+            </div>
+
+            <h2 id="ornek">Pratik Bir Örnek</h2>
+            <p>
+              Teoremin "yolculuk" yorumuna dönelim: 2 saatte 120 km giden bir araç
+              düşünün. Ortalama hız 60 km/sa'dir. OD T bize, yolculuğun bir anında
+              hız göstergesinin tam olarak 60 km/sa'yi gösterdiği bir an olması
+              GEREKTİĞİNİ söyler — araç hiç durmasa ve hiç geri gitmese bile.
+            </p>
+
+            <blockquote>
+              Matematik, evrenin yazıldığı dildir.
+              <span class="blockquote-attribution">— Galileo Galilei, Il Saggiatore</span>
+            </blockquote>
+
+            <div class="content-box content-box--warning">
+              <p class="content-box__label">UYARI</p>
+              <p>
+                OD T yalnızca <em>varlık</em> garantisi verir — $c$'nin KAÇ tane
+                olduğunu veya TAM OLARAK nerede olduğunu söylemez. Ayrıca $f$
+                aralığın uç noktalarında türevlenebilir olmak ZORUNDA değildir;
+                yalnızca açık aralıkta türevlenebilir olması yeterlidir.<sup><a class="footnote-ref" href="#fn1" id="fnref1">1</a></sup>
+              </p>
+            </div>
+
+            <table>
+              <thead>
+                <tr><th>Koşul</th><th>Gerekli mi?</th><th>Açıklama</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>$[a,b]$'de süreklilik</td><td class="text-right">Evet</td><td>Uç noktalar dahil</td></tr>
+                <tr><td>$(a,b)$'de türevlenebilirlik</td><td class="text-right">Evet</td><td>Uç noktalar hariç</td></tr>
+                <tr><td>$f$'nin uç noktalarda türevi</td><td class="text-right">Hayır</td><td>Gerekli değil</td></tr>
+              </tbody>
+            </table>
+
+            <h2 id="hatalar">Sık Yapılan Hatalar</h2>
+            <p>
+              Öğrencilerin en sık düştüğü tuzak, teoremi $f$'nin $[a,b]$'nin TAMAMINDA
+              türevlenebilir olmasını gerektiriyormuş gibi hatırlamaktır. Oysa yalnızca
+              açık aralıkta türevlenebilirlik yeterlidir — bu ayrım, $\sqrt{x}$ gibi
+              uç noktada dik teğeti olan fonksiyonlarda kritik hâle gelir.
+            </p>
+
+            <h2 id="alistirmalar">Alıştırmalar</h2>
+
+      <div class="content-box content-box--exercise">
+        <p class="content-box__label">ALIŞTIRMA 1</p>
+
+            <p>$f(x) = x^3 - x$ fonksiyonu için $[0, 2]$ aralığında OD T'yi sağlayan $c$ değerini bulun.</p>
+
+        <div data-accordion>
+          <button type="button" class="accordion__trigger content-box__solution-trigger" aria-expanded="false" aria-controls="exercise-1" id="exercise-1-trigger">
+            Çözümü Göster
+          </button>
+          <div class="accordion__panel content-box__solution-panel" id="exercise-1" role="region" aria-labelledby="exercise-1-trigger" hidden>
+
+            <p>
+              Ortalama eğim: $\frac{f(2)-f(0)}{2-0} = \frac{6-0}{2} = 3$.
+              $f'(x) = 3x^2 - 1 = 3 \Rightarrow x^2 = \frac{4}{3} \Rightarrow c = \frac{2}{\sqrt{3}} \approx 1.15$,
+              ki bu $(0,2)$ aralığındadır.
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="content-box content-box--exercise">
+        <p class="content-box__label">ALIŞTIRMA 2</p>
+
+            <p>$f(x) = |x|$ fonksiyonunun $[-1, 1]$ aralığında OD T'yi sağlamadığını gösterin. Hangi koşul ihlal ediliyor?</p>
+
+        <div data-accordion>
+          <button type="button" class="accordion__trigger content-box__solution-trigger" aria-expanded="false" aria-controls="exercise-2" id="exercise-2-trigger">
+            Çözümü Göster
+          </button>
+          <div class="accordion__panel content-box__solution-panel" id="exercise-2" role="region" aria-labelledby="exercise-2-trigger" hidden>
+
+            <p>
+              $f(x) = |x|$, $x=0$ noktasında türevlenebilir değildir (sol ve sağ
+              türevler farklıdır: $-1 \ne 1$). $(a,b) = (-1,1)$ açık aralığı
+              $x=0$'ı içerdiğinden, türevlenebilirlik koşulu ihlal edilir ve
+              teorem uygulanamaz.
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+
+            <h2 id="kod-ornekleri">Kod Bloğu Örnekleri</h2>
+            <p>
+              Bu bölüm, sitenin kod bloğu bileşenini (Sprint 8/12) farklı diller
+              üzerinden göstermek amacıyla eklenmiştir. Örnek 1.3'teki hesabı
+              önce Python ile sayısal olarak doğrulayalım:
+            </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__lang"><img src="/assets/icons/code.svg" alt="" width="16" height="16" aria-hidden="true" />Python</span>
+          <button type="button" class="code-block__copy" aria-label="Kodu kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="14" height="14" aria-hidden="true" />
+            <span class="code-block__copy-label">Kopyala</span>
+          </button>
+        </div>
+        <pre><code class="code-block__line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11</code><code>import sympy as sp
+
+x = sp.symbols(&#x27;x&#x27;)
+f = x**2
+
+a, b = 1, 3
+ortalama_egim = (f.subs(x, b) - f.subs(x, a)) / (b - a)
+c = sp.solve(sp.diff(f, x) - ortalama_egim, x)
+
+print(f&quot;Ortalama eğim: {ortalama_egim}&quot;)
+print(f&quot;c değeri: {c}&quot;)  # [2] -&gt; (1, 3) aralığında, teorem doğrulandı</code></pre>
+      </div>
+
+
+            <p>Aynı örneği bir veritabanında saklanan fonksiyon değerlerinden sorgulamak istersek:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__lang"><img src="/assets/icons/code.svg" alt="" width="16" height="16" aria-hidden="true" />SQL</span>
+          <button type="button" class="code-block__copy" aria-label="Kodu kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="14" height="14" aria-hidden="true" />
+            <span class="code-block__copy-label">Kopyala</span>
+          </button>
+        </div>
+        <pre><code class="code-block__line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8
+9</code><code>SELECT
+    f_a.deger AS f_a,
+    f_b.deger AS f_b,
+    (f_b.deger - f_a.deger) / (b.x - a.x) AS ortalama_egim
+FROM fonksiyon_degerleri AS f_a
+JOIN fonksiyon_degerleri AS f_b ON f_b.x = 3
+JOIN noktalar AS a ON a.x = f_a.x
+JOIN noktalar AS b ON b.x = f_b.x
+WHERE f_a.x = 1;</code></pre>
+      </div>
+
+
+            <p>Tarayıcıda hızlı bir sayısal kontrol için JavaScript:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__lang"><img src="/assets/icons/code.svg" alt="" width="16" height="16" aria-hidden="true" />JavaScript</span>
+          <button type="button" class="code-block__copy" aria-label="Kodu kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="14" height="14" aria-hidden="true" />
+            <span class="code-block__copy-label">Kopyala</span>
+          </button>
+        </div>
+        <pre><code class="code-block__line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8
+9</code><code>const f = (x) =&gt; x ** 2;
+const [a, b] = [1, 3];
+
+const ortalamaEgim = (f(b) - f(a)) / (b - a);
+const turev = (x) =&gt; 2 * x;
+const c = ortalamaEgim / 2;
+
+console.log({ ortalamaEgim, c, aralikta: c &gt; a &amp;&amp; c &lt; b });
+// { ortalamaEgim: 4, c: 2, aralikta: true }</code></pre>
+      </div>
+
+
+            <p>Bu tabloyu basit bir sayfada göstermek istersek HTML ve CSS:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__lang"><img src="/assets/icons/code.svg" alt="" width="16" height="16" aria-hidden="true" />HTML</span>
+          <button type="button" class="code-block__copy" aria-label="Kodu kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="14" height="14" aria-hidden="true" />
+            <span class="code-block__copy-label">Kopyala</span>
+          </button>
+        </div>
+        <pre><code class="code-block__line-numbers" aria-hidden="true">1
+2
+3
+4
+5</code><code>&lt;table class=&quot;ovt-sonuc&quot;&gt;
+  &lt;tr&gt;&lt;th&gt;Aralık&lt;/th&gt;&lt;td&gt;[1, 3]&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;th&gt;Ortalama Eğim&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;th&gt;c Değeri&lt;/th&gt;&lt;td&gt;2&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__lang"><img src="/assets/icons/code.svg" alt="" width="16" height="16" aria-hidden="true" />CSS</span>
+          <button type="button" class="code-block__copy" aria-label="Kodu kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="14" height="14" aria-hidden="true" />
+            <span class="code-block__copy-label">Kopyala</span>
+          </button>
+        </div>
+        <pre><code class="code-block__line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</code><code>.ovt-sonuc {
+  border-collapse: collapse;
+  font-family: &quot;JetBrains Mono&quot;, monospace;
+}
+
+.ovt-sonuc th,
+.ovt-sonuc td {
+  padding: 8px 16px;
+  border-bottom: 1px solid #E7E7E3;
+}</code></pre>
+      </div>
+
+
+            <h2 id="sonuc">Sonuç</h2>
+            <p>
+              Ortalama Değer Teoremi, ispatı kısa olsa da sonuçları derin bir
+              teoremdir — Taylor açılımlarından optimizasyon algoritmalarının
+              yakınsama analizine kadar birçok yerde karşımıza çıkar. Bir sonraki
+              yazıda, bu teoremin türevlerinden biri olan Cauchy Ortalama Değer
+              Teoremi'ni ele alacağız.
+            </p>
+          </div>
+
+          <div class="footnotes">
+            <p class="footnotes__title">Dipnotlar</p>
+            <ol class="footnotes__list">
+              <li id="fn1">
+                Bazı ders kitapları bu ayrımı netleştirmez; Rudin'in <em>Principles
+                of Mathematical Analysis</em> kitabı (bkz. Kaynakça) bu konuda en
+                titiz kaynaklardan biridir.
+                <a class="footnote-back" href="#fnref1" aria-label="Metne dön">↩</a>
+              </li>
+            </ol>
+          </div>
+
+          <div class="bibliography">
+            <p class="bibliography__title">Kaynakça</p>
+            <ol class="bibliography__list">
+              <li class="bibliography__item">Rudin, W. (1976). <em>Principles of Mathematical Analysis</em> (3. baskı). McGraw-Hill.</li>
+              <li class="bibliography__item">Stewart, J. (2015). <em>Calculus: Early Transcendentals</em> (8. baskı). Cengage Learning.</li>
+              <li class="bibliography__item">Spivak, M. (1994). <em>Calculus</em> (3. baskı). Publish or Perish.</li>
+            </ol>
+          </div>
+        </div>
+
+        <aside class="toc" aria-label="İçindekiler">
+          <p class="toc__title">İçindekiler</p>
+          <ul class="toc__list">
+            <li><a class="toc__link" href="#giris">Giriş</a></li>
+            <li><a class="toc__link" href="#teorem">Ortalama Değer Teoremi</a></li>
+            <li><a class="toc__link toc__link--h3" href="#ispat">İspat</a></li>
+            <li><a class="toc__link" href="#ornek">Pratik Bir Örnek</a></li>
+            <li><a class="toc__link" href="#hatalar">Sık Yapılan Hatalar</a></li>
+            <li><a class="toc__link" href="#alistirmalar">Alıştırmalar</a></li>
+            <li><a class="toc__link" href="#kod-ornekleri">Kod Bloğu Örnekleri</a></li>
+            <li><a class="toc__link" href="#sonuc">Sonuç</a></li>
+          </ul>
+        </aside>
+      </div>
+
+      <footer class="article-footer">
+        <div class="article-footer__tags">
+          <a class="badge" href="/pages/etiketler/matematik.html">#matematik</a>
+          <a class="badge" href="/pages/etiketler/ispat.html">#ispat</a>
+          <a class="badge" href="/pages/etiketler/kalkulus.html">#kalkülüs</a>
+        </div>
+
+        <div class="article-footer__share">
+          <span>Paylaş:</span>
+          <a class="button button--icon" href="https://www.linkedin.com/sharing/share-offsite/?url=https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn'de paylaş">
+            <img src="/assets/icons/linkedin.svg" alt="" width="18" height="18" aria-hidden="true" />
+          </a>
+          <a class="button button--icon" href="https://twitter.com/intent/tweet?url=https://orhanakyavuz.com/blog/matematik-sezgisi-nasil-gelisir/" target="_blank" rel="noopener noreferrer" aria-label="X'te (Twitter) paylaş">
+            <img src="/assets/icons/external-link.svg" alt="" width="18" height="18" aria-hidden="true" />
+          </a>
+          <button type="button" class="button button--icon" data-copy-link aria-label="Bağlantıyı kopyala">
+            <img src="/assets/icons/copy.svg" alt="" width="18" height="18" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div class="author-card">
+          <img class="author-card__avatar" src="/assets/images/about/portre.jpg" alt="" width="64" height="64" />
+          <div>
+            <p class="author-card__name">Orhan Akyavuz</p>
+            <p class="author-card__role">Matematik Eğitmeni</p>
+            <p class="author-card__bio">
+              Uludağ Üniversitesi Matematik mezunu, matematik ve veri analizi
+              üzerine yazıyor.
+            </p>
+            <a class="button button--text author-card__link" href="/pages/hakkimda.html">
+              Tüm Yazılarını Gör <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <nav class="article-nav" aria-label="Makale gezinme">
+          <a class="article-nav__link article-nav__link--prev" href="/blog/kariyer-planlamasinda-veri/">
+            <span class="article-nav__direction"><img src="/assets/icons/arrow-left.svg" alt="" aria-hidden="true" /> Önceki</span>
+            <span class="article-nav__title">Kariyer Planlamasında Veri Kullanmak</span>
+          </a>
+          <a class="article-nav__link article-nav__link--next" href="/blog/python-ile-veri-temizleme/">
+            <span class="article-nav__direction">Sonraki <img src="/assets/icons/arrow-right.svg" alt="" aria-hidden="true" /></span>
+            <span class="article-nav__title">Python ile Veri Temizleme: Pratik Bir Rehber</span>
+          </a>
+        </nav>
+
+        <h2 class="text-h3 article-footer__related-title">Benzer Yazılar</h2>
+        <ul class="article-card-grid mb-10" role="list">
+          <li>
+            <article class="article-card">
+              <a class="article-card__link" href="/blog/matematiksel-dusunme-rehberi/">
+                <img class="article-card__image" src="/assets/images/articles/placeholder-featured.jpg" alt="" width="376" height="212" loading="lazy" decoding="async" />
+                <span class="article-card__category">Matematik</span>
+                <h3 class="article-card__title">Matematiksel Düşünme: Bir Rehber</h3>
+                <p class="article-card__excerpt">Problem çözme yalnızca formül bilmek değildir — doğru soruları sormayı öğrenmektir.</p>
+                <p class="article-card__meta"><time datetime="2026-07-15">15 Tem 2026</time><span aria-hidden="true">·</span><span>11 dk okuma</span></p>
+              </a>
+            </article>
+          </li>
+          <li>
+            <article class="article-card">
+              <a class="article-card__link" href="/blog/sql-performans-ipuclari/">
+                <img class="article-card__image" src="/assets/images/articles/placeholder-04.jpg" alt="" width="376" height="212" loading="lazy" decoding="async" />
+                <span class="article-card__category">Python &amp; SQL</span>
+                <h3 class="article-card__title">SQL Sorgularında Performans İpuçları</h3>
+                <p class="article-card__excerpt">Doğru index, doğru JOIN sırası ve doğru EXPLAIN okuma alışkanlığı.</p>
+                <p class="article-card__meta"><time datetime="2026-07-10">10 Tem 2026</time><span aria-hidden="true">·</span><span>6 dk okuma</span></p>
+              </a>
+            </article>
+          </li>
+          <li>
+            <article class="article-card">
+              <a class="article-card__link" href="/blog/yapay-zeka-egitimde-kullanimi/">
+                <img class="article-card__image" src="/assets/images/articles/placeholder-03.jpg" alt="" width="376" height="212" loading="lazy" decoding="async" />
+                <span class="article-card__category">Yapay Zekâ</span>
+                <h3 class="article-card__title">Yapay Zekâ Eğitimde Nasıl Kullanılabilir?</h3>
+                <p class="article-card__excerpt">Kişiselleştirilmiş öğrenme yollarından otomatik geri bildirime.</p>
+                <p class="article-card__meta"><time datetime="2026-07-20">20 Tem 2026</time><span aria-hidden="true">·</span><span>8 dk okuma</span></p>
+              </a>
+            </article>
+          </li>
+        </ul>
+
+        <div class="comments-placeholder">
+          <p>Yorumlar (0)</p>
+          <p>Yorum sistemi yakında aktif olacak.</p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <!-- INCLUDE FOOTER: footer.html -->
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

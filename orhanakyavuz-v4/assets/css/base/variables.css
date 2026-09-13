@@ -1,0 +1,172 @@
+/* ============================================================================
+   VARIABLES — Design Tokens
+   Sprint 2 (UI Design System) içindeki her değer burada birebir
+   CSS custom property olarak tanımlanır. Bu dosya "tek doğruluk kaynağı"dır;
+   diğer hiçbir CSS dosyası ham HEX/px değeri yazmaz, yalnızca bu tokenleri
+   referans alır.
+   ============================================================================ */
+
+:root {
+
+  /* ------------------------------------------------------------------------
+     RENK — Primary & Gray (Graphite-Slate ailesi), Sprint 2 § 3.2
+     ---------------------------------------------------------------------- */
+  --color-gray-50:  #FAFAF8;
+  --color-gray-100: #F2F2EF;
+  --color-gray-200: #E7E7E3;
+  --color-gray-300: #D3D5D9;
+  --color-gray-400: #B4B8C0;
+  --color-gray-500: #8B909C;
+  --color-gray-600: #5B6472;
+  --color-gray-700: #434B59;
+  --color-gray-800: #262B33;
+  --color-gray-900: #12151A;
+  --color-gray-950: #0A0C0F;
+
+  /* ------------------------------------------------------------------------
+     INK FIXED — Sprint 13: TEMA-BAĞIMSIZ sabit koyu tonlar.
+     Bazı bileşenler (Secondary buton, Skip Link, Newsletter bloğu) her iki
+     temada da bilinçli olarak "koyu" kalmalıdır — bunlar --color-gray-900'e
+     değil bu sabit tokene bağlanır. Böylece aşağıdaki dark mode bölümünde
+     gray-50…950 skalasını güvenle TERSİNE çevirebiliriz; bu üç bileşen
+     etkilenmez (Sprint 13 § Dark Mode notu).
+     ---------------------------------------------------------------------- */
+  --color-ink-fixed:        #12151A;
+  --color-ink-fixed-hover:  #262B33;
+  --color-ink-fixed-active: #434B59;
+
+  /* RENK — Accent (Academic Green / Zümrüt), Sprint 2 § 3.3 */
+  --color-accent-50:  #EDF7EA;
+  --color-accent-100: #D6EAD1;
+  --color-accent-200: #B7D6A8;
+  --color-accent-300: #8BBF76;
+  --color-accent-400: #589F4F;
+  --color-accent-500: #326F34;
+  --color-accent-600: #2A5C2D;
+  --color-accent-700: #204625;
+  --color-accent-800: #17361F;
+  --color-accent-900: #0E2617;
+
+  /* RENK — Semantik, Sprint 2 § 3.4 */
+  --color-success:        #2B7E3B;
+  --color-success-bg:     #EAF6EA;
+  --color-success-border: #BFDBB7;
+
+  --color-warning:        #B68824;
+  --color-warning-bg:     #FEF3D7;
+  --color-warning-border: #E6D2A2;
+
+  --color-gold-100:       #FEF3D7;
+  --color-gold-200:       #F5E2A6;
+  --color-gold-300:       #E5CB7A;
+  --color-gold-400:       #CFB35A;
+  --color-gold-500:       #B68824;
+  --color-gold-600:       #9C6E1D;
+  --color-gold-700:       #805817;
+  --color-gold-800:       #644513;
+  --color-gold-900:       #4B3410;
+
+  --color-error:          #C0362C;
+  --color-error-bg:       #FBEAE8;
+  --color-error-border:   #F0C4BF;
+
+  --color-info:           #4A6D49;
+  --color-info-bg:        #ECF3EB;
+  --color-info-border:    #C9DAC2;
+
+  /* RENK — Fonksiyonel atamalar, Sprint 2 § 3.5 */
+  --color-background:      #F5F3EC;
+  --color-surface:         #FFFFFF;
+  --color-border:          #D8D3C3;
+  --color-divider:         #E5E0D0;
+  --color-text-primary:    #131C13;
+  --color-text-secondary:  #4D574D;
+  --color-text-muted:      #6E766E;
+  --color-link:            var(--color-accent-500);
+  --color-link-visited:    var(--color-accent-700);
+  --color-hover:           var(--color-warning);
+  --color-selection-bg:    #F7E8C0;
+  --color-selection-text:  var(--color-text-primary);
+
+  /* ------------------------------------------------------------------------
+     TİPOGRAFİ — Font aileleri, Sprint 1 § 3 / Sprint 2 § 4
+     ---------------------------------------------------------------------- */
+  --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* ------------------------------------------------------------------------
+     SPACING — 8-point grid skalası, Sprint 2 § 2
+     Adlandırma: değerin 4'e bölümü (Tailwind benzeri, akılda tutması kolay)
+     ---------------------------------------------------------------------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+  --space-40: 160px;
+
+  /* ------------------------------------------------------------------------
+     RADIUS, Sprint 2 § 5
+     ---------------------------------------------------------------------- */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* ------------------------------------------------------------------------
+     GÖLGE, Sprint 2 § 6 — saf siyah değil, Graphite Ink (18,21,26) tonlu
+     ---------------------------------------------------------------------- */
+  --shadow-xs:       0 1px 2px rgba(18, 21, 26, 0.04);
+  --shadow-sm:       0 2px 4px rgba(18, 21, 26, 0.06);
+  --shadow-md:       0 4px 12px rgba(18, 21, 26, 0.08);
+  --shadow-lg:       0 8px 24px rgba(18, 21, 26, 0.10);
+  --shadow-xl:       0 16px 48px rgba(18, 21, 26, 0.12);
+  --shadow-floating: 0 6px 16px rgba(18, 21, 26, 0.08);
+  --shadow-modal:    0 16px 48px rgba(18, 21, 26, 0.12), 0 0 0 1px rgba(18, 21, 26, 0.04);
+  --shadow-dropdown: var(--shadow-lg);
+
+  /* ------------------------------------------------------------------------
+     GEÇİŞ (Transition), Sprint 2 § 12 — bounce/elastic asla kullanılmaz
+     ---------------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+
+  --transition-fast: 150ms var(--ease-out);   /* hover, buton */
+  --transition-base: 200ms var(--ease-out);   /* fade, kart, navbar */
+  --transition-slow: 250ms var(--ease-out);   /* modal, accordion */
+
+  /* ------------------------------------------------------------------------
+     CONTAINER GENİŞLİKLERİ, Sprint 2 § 1.1
+     ---------------------------------------------------------------------- */
+  --container-reading:  720px;   /* Makale gövde metni okuma sütunu */
+  --container-max:      1200px;  /* Standart layout/grid genişliği */
+  --container-wide-cap: 1320px;  /* Ultra-wide koruma tavanı — asla aşılmaz */
+
+  /* ------------------------------------------------------------------------
+     Not: Breakpoint değerleri (768 / 1024 / 1440 / 1920 / 2560) CSS
+     custom property olarak TANIMLANMAZ; @media sorguları statik değer
+     gerektirir ve custom property'ler media query içinde desteklenmez.
+     Bu değerler her dosyada aynı sabit sayılarla ve açıklayıcı yorumlarla
+     kullanılır (bkz. main.css üstündeki breakpoint tablosu).
+     ---------------------------------------------------------------------- */
+}
+
+/* ============================================================================
+   SEÇİM (::selection) RENGİ, Sprint 2 § 3.5
+   ============================================================================ */
+::selection {
+  background-color: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}

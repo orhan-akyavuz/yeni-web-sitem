@@ -1,0 +1,144 @@
+/* ============================================================================
+   BUTTONS
+   Sprint 2 § 7'nin tam uygulaması: boyutlar, varyantlar, durumlar.
+   ============================================================================ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              border-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+/* Basma anı: geçişsiz, anlık tepki (Sprint 2 §7.3) */
+.button:active {
+  transition-duration: 0s;
+}
+
+/* ------------------------------------------------------------------------
+   BOYUTLAR
+   ---------------------------------------------------------------------- */
+.button--small {
+  height: 32px;
+  padding-inline: var(--space-3);
+  font-size: 14px;
+  gap: var(--space-1);
+}
+.button--medium {
+  height: 40px;
+  padding-inline: var(--space-5);
+  font-size: 16px;
+}
+.button--large {
+  height: 48px;
+  padding-inline: var(--space-8);
+  font-size: 16px;
+}
+
+/* ------------------------------------------------------------------------
+   VARYANTLAR
+   ---------------------------------------------------------------------- */
+.button--primary {
+  background-color: var(--color-warning);
+  color: #FFFFFF;
+  box-shadow: 0 6px 12px rgba(182, 136, 36, 0.18);
+}
+.button--primary:hover { background-color: #9C6E1D; }
+.button--primary:active { background-color: #805817; }
+
+.button--secondary {
+  background-color: var(--color-accent-500);
+  color: #FFFFFF;
+}
+.button--secondary:hover { background-color: var(--color-accent-600); }
+.button--secondary:active { background-color: var(--color-accent-700); }
+
+.button:focus-visible {
+  outline: 2px solid var(--color-warning);
+  outline-offset: 2px;
+}
+
+.button--outline {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-gray-300);
+}
+.button--outline:hover {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-accent-300);
+}
+.button--outline:active { background-color: var(--color-gray-100); }
+
+.button--ghost {
+  background-color: transparent;
+  color: var(--color-text-primary);
+}
+.button--ghost:hover { background-color: var(--color-gray-100); }
+.button--ghost:active { background-color: var(--color-gray-200); }
+
+.button--text {
+  height: auto;
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-accent-500);
+  font-weight: 600;
+  border-radius: 0;
+}
+.button--text:hover { text-decoration: underline; text-underline-offset: 3px; }
+.button--text:active { color: var(--color-accent-700); }
+
+.button--icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+}
+.button--icon:hover { background-color: var(--color-gray-100); }
+.button--icon:active { background-color: var(--color-gray-200); }
+
+.button--danger {
+  background-color: var(--color-error);
+  color: #FFFFFF;
+}
+.button--danger:hover { background-color: #A22C24; }
+
+.button--success {
+  background-color: var(--color-success);
+  color: #FFFFFF;
+}
+.button--success:hover { background-color: #197449; }
+
+/* ------------------------------------------------------------------------
+   DURUMLAR
+   ---------------------------------------------------------------------- */
+.button:disabled,
+.button[aria-disabled='true'] {
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-400);
+  border-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.button--loading {
+  color: transparent; /* etiket gizlenir, spinner (Sprint 6+ JS) yerini alır */
+  position: relative;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Odak halkası — tüm buton varyantları için ortak, yalnızca klavyede görünür */
+.button:focus-visible {
+  outline: 2px solid var(--color-accent-300);
+  outline-offset: 2px;
+}

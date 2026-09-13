@@ -1,0 +1,378 @@
+/* ============================================================================
+   NAVBAR
+   Sprint 3 § 1: 72px yükseklik, sticky, scroll'da zemin belirmesi,
+   mobilde hamburger + slide-in panel.
+   ============================================================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 64px; /* Mobil */
+  display: flex;
+  align-items: center;
+  background-color: rgba(245, 243, 236, 0.85);
+  border-bottom: 1px solid rgba(216, 211, 195, 0.9);
+  transition: background-color var(--transition-base),
+              border-color var(--transition-base);
+}
+
+@media (min-width: 1024px) {
+  .site-header {
+    height: 72px; /* Laptop ve üzeri */
+  }
+}
+
+/*
+  Scroll sonrası durum — JS tarafından body/header'a `.is-scrolled`
+  sınıfı eklenecek (Sprint 6+). CSS şimdiden hazır: yalnızca zemin/
+  kenarlık belirir, YÜKSEKLİK ASLA DEĞİŞMEZ (Sprint 2 §12 kuralı).
+*/
+.site-header.is-scrolled {
+  background-color: rgba(245, 243, 236, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: var(--color-border);
+}
+
+.site-nav__link[aria-current='page'] {
+  color: var(--color-warning);
+}
+.site-nav__link[aria-current='page']::after {
+  background-color: var(--color-warning);
+}
+
+.site-header__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-inline: var(--space-5);
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .site-header__container { padding-inline: var(--space-10); }
+}
+@media (min-width: 1024px) {
+  .site-header__container {
+    padding-inline: var(--space-16);
+    max-width: calc(var(--container-max) + 2 * var(--space-16));
+  }
+}
+@media (min-width: 1920px) {
+  .site-header__container {
+    max-width: calc(var(--container-wide-cap) + 2 * var(--space-16));
+  }
+}
+
+.site-header__logo {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------------------
+   ANA MENÜ (Desktop/Laptop/Tablet) — mobilde gizlenir
+   ---------------------------------------------------------------------- */
+.site-nav {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .site-nav {
+    display: block;
+    margin-inline: auto; /* logo ile ikonlar arasında ortala */
+  }
+}
+
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8); /* 32px — Sprint 3 § 1 */
+}
+
+.site-nav__link {
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  padding-block: var(--space-2);
+  transition: color var(--transition-fast);
+  text-decoration: none;
+}
+.site-nav__link:hover {
+  color: var(--color-text-primary);
+}
+
+/* ------------------------------------------------------------------------
+   MEGA MENÜ — Craft.do Buzlu Cam (Glassmorphism) Açılır Menü
+   ---------------------------------------------------------------------- */
+.site-nav__item--has-dropdown {
+  position: relative;
+}
+
+.site-nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding-block: var(--space-2);
+  transition: color var(--transition-fast);
+}
+
+.site-nav__trigger:hover,
+.site-nav__item--has-dropdown:hover .site-nav__trigger,
+.site-nav__item--has-dropdown.is-open .site-nav__trigger {
+  color: var(--color-text-primary);
+}
+
+.site-nav__chevron {
+  display: inline-block;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--color-text-muted);
+}
+
+.site-nav__item--has-dropdown:hover .site-nav__chevron,
+.site-nav__item--has-dropdown.is-open .site-nav__chevron {
+  transform: rotate(180deg);
+  color: var(--color-text-primary);
+}
+
+/* Açılır Kart (Hover Köprüsü + Fade / Scale Animasyonu) */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px) scale(0.97);
+  padding-top: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1000;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 180ms;
+}
+
+.site-nav__item--has-dropdown:hover .mega-menu,
+.site-nav__item--has-dropdown:focus-within .mega-menu,
+.site-nav__item--has-dropdown.is-open .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* Buzlu Cam Konteyneri (Glassmorphism Container) */
+.mega-menu__inner {
+  width: 580px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(216, 211, 195, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(18, 21, 26, 0.03),
+              0 16px 40px -8px rgba(18, 21, 26, 0.12),
+              0 2px 8px -2px rgba(18, 21, 26, 0.04);
+  padding: 16px;
+}
+
+/* 2 Sütunlu Izgara */
+.mega-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+/* Kart Öğeleri */
+.mega-menu__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: background-color 160ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 160ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 160ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mega-menu__card:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(216, 211, 195, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(18, 21, 26, 0.05);
+}
+
+.mega-menu__icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  font-size: 19px;
+  line-height: 1;
+  border-radius: 12px;
+  background-color: var(--color-surface);
+  border: 1px solid rgba(216, 211, 195, 0.6);
+  box-shadow: 0 1px 3px rgba(18, 21, 26, 0.03);
+  flex-shrink: 0;
+  transition: transform 160ms ease;
+}
+
+.mega-menu__card:hover .mega-menu__icon-box {
+  transform: scale(1.08);
+}
+
+.mega-menu__card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.mega-menu__card-title {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.mega-menu__card-desc {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+/* Karanlık Mod */
+:root[data-theme='dark'] .mega-menu__inner {
+  background: rgba(26, 29, 34, 0.88);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme='dark'] .mega-menu__card:hover {
+  background-color: rgba(36, 41, 49, 0.9);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+:root[data-theme='dark'] .mega-menu__icon-box {
+  background-color: #242932;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Aktif sayfa göstergesi — sunucu/şablon tarafında ilgili linke
+   eklenecek `aria-current="page"` ile eşleşir */
+.site-nav__link[aria-current='page'] {
+  color: var(--color-accent-500);
+}
+.site-nav__link[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background-color: var(--color-accent-500);
+}
+
+/* ------------------------------------------------------------------------
+   ARAMA TETİKLEYİCİ
+   ---------------------------------------------------------------------- */
+.site-header__search-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.site-header__search-toggle:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+}
+
+/* ------------------------------------------------------------------------
+   HAMBURGER — yalnızca mobil/tablette görünür
+   ---------------------------------------------------------------------- */
+.site-header__menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;  /* Sprint 2 §13 — min. 44px dokunma alanı */
+  height: 44px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+}
+.site-header__menu-toggle:hover {
+  background-color: var(--color-gray-100);
+}
+@media (min-width: 1024px) {
+  .site-header__menu-toggle {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   MOBİL SLIDE-IN PANEL
+   Varsayılan: `hidden` attribute (HTML) ile gizli. JS bu attribute'u
+   kaldırıp `.mobile-nav--open` ekleyecek (Sprint 6+).
+   ---------------------------------------------------------------------- */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: var(--color-surface);
+  padding: var(--space-24) var(--space-6) var(--space-6);
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+}
+.mobile-nav:not([hidden]) {
+  transform: translateX(0);
+}
+@media (min-width: 1024px) {
+  .mobile-nav {
+    display: none; /* Masaüstünde her koşulda kapalı kalır */
+  }
+}
+
+.mobile-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.mobile-nav__link {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Sprint 13 — eksik :active durumları */
+.site-nav__link:active {
+  color: var(--color-text-primary);
+}
+.site-header__search-toggle:active,
+.site-header__menu-toggle:active {
+  background-color: var(--color-gray-200);
+}
+.mobile-nav__link:active {
+  color: var(--color-accent-600);
+}

@@ -1,0 +1,153 @@
+/* ============================================================================
+   CONTACT-PAGE.CSS
+   Craft.do inspired minimalist, clean, and modern contact page design.
+   ============================================================================ */
+
+.contact-page {
+  padding-block: var(--space-20);
+  background: var(--color-background); /* Subtle background color */
+  min-height: 80vh;
+}
+
+.contact-container {
+  width: min(100% - (var(--space-8) * 2), 1000px);
+  margin-inline: auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.contact-header h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+.contact-header p {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Grid Layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+/* Sidebar Info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-card {
+  background: var(--color-surface);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent-300);
+}
+
+.contact-card__icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.contact-card__content h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contact-card__content p {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Form Area */
+.contact-form-container {
+  background: var(--color-surface);
+  padding: var(--space-10);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-form {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.contact-form .form-field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.contact-form .form-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.contact-form .input,
+.contact-form .textarea {
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  transition: all var(--transition-fast);
+}
+
+.contact-form .input:focus,
+.contact-form .textarea:focus {
+  background: var(--color-surface);
+  border-color: var(--color-accent-500);
+  box-shadow: 0 0 0 4px var(--color-accent-50);
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .contact-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .contact-form-container {
+    padding: var(--space-6);
+  }
+}

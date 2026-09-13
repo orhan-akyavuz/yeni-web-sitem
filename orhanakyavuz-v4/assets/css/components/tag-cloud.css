@@ -1,0 +1,42 @@
+/* ============================================================================
+   TAG CLOUD
+   Sprint 7 § 4: tüm etiketler tek bir sarmalayıcıda, agresif boyut
+   farkı YOK (Sprint 1 "abartı yok" ilkesi) — yalnızca ağırlık 500→700
+   arası hafifçe değişebilir, boyut sabit kalır.
+   ============================================================================ */
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.tag-cloud__item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* Sprint 2 §13 — dokunma alanı, mobilde küçültülmez */
+  padding: var(--space-2) var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.tag-cloud__item:hover {
+  border-color: var(--color-accent-300);
+  color: var(--color-accent-600);
+}
+
+/* Kullanım sıklığına göre ağırlık — boyut asla değişmez */
+.tag-cloud__item--frequent {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Sprint 13 — eksik :active durumu */
+.tag-cloud__item:active {
+  border-color: var(--color-accent-500);
+  color: var(--color-accent-700);
+}

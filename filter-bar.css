@@ -1,0 +1,196 @@
+/* ============================================================================
+   FILTER BAR
+   Sprint 7 § 10: Kategori/Etiket/Tarih filtreleri + Sırala dropdown'u,
+   tek yatay satır (desktop) → bottom-sheet (mobil).
+   ============================================================================ */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.filter-bar__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.filter-bar__select {
+  height: 36px;
+  padding-inline: var(--space-3);
+  padding-right: var(--space-8);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235B6472' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+}
+.filter-bar__select:focus-visible {
+  outline: 2px solid var(--color-accent-300);
+  outline-offset: 2px;
+}
+
+/* Mobil: tüm filtreler tek "Filtrele" butonunun arkasına toplanır */
+.filter-bar__mobile-toggle {
+  display: inline-flex;
+}
+@media (min-width: 768px) {
+  .filter-bar__mobile-toggle { display: none; }
+}
+.filter-bar__group--desktop {
+  display: none;
+}
+@media (min-width: 768px) {
+  .filter-bar__group--desktop { display: flex; }
+}
+
+.filter-bar__result-count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------------------------
+   AKTİF FİLTRE ÇİPLERİ — Sprint 7 § 10.2
+   ---------------------------------------------------------------------- */
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.active-filters__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background-color: var(--color-accent-50);
+  color: var(--color-accent-700);
+  font-size: 13px;
+  font-weight: 500;
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+.active-filters__chip button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  color: inherit;
+}
+.active-filters__chip button:hover {
+  background-color: var(--color-accent-100);
+}
+
+/* ------------------------------------------------------------------------
+   MOBİL BOTTOM-SHEET — Sprint 18
+   Sprint 7 § 10.1'de tasarlanan, Sprint 13'te "her zaman görünür select"
+   olarak basitleştirilen mobil filtre paneli artık tam olarak uygulandı.
+   `.backdrop` (Sprint 13, components/overlay.css) burada yeniden kullanılır.
+   ---------------------------------------------------------------------- */
+.bottom-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(100%);
+  transition: transform var(--transition-slow);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.bottom-sheet.is-open {
+  transform: translateY(0);
+}
+
+.bottom-sheet__handle {
+  width: 36px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-gray-300);
+  margin: var(--space-3) auto 0;
+}
+
+.bottom-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-divider);
+}
+.bottom-sheet__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-text-primary);
+}
+.bottom-sheet__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+}
+.bottom-sheet__close:hover {
+  background-color: var(--color-gray-100);
+}
+
+.bottom-sheet__body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+/* Sheet içine taşınan .filter-bar__group'lar dikey ve tam genişlikte dizilir */
+.bottom-sheet__body .filter-bar__group {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+.bottom-sheet__body .filter-bar__select {
+  width: 100%;
+  height: 44px; /* Sprint 2 §13 — mobil dokunma alanı */
+}
+
+.bottom-sheet__footer {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-top: 1px solid var(--color-divider);
+}
+.bottom-sheet__footer .button {
+  flex: 1;
+}
+
+/* Mobil filtre tetikleyici — yalnızca <768px'te görünür */
+.filter-bar__mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.filter-bar__mobile-toggle img {
+  width: 16px;
+  height: 16px;
+}
+@media (min-width: 768px) {
+  .bottom-sheet { display: none; } /* masaüstünde hiçbir zaman render edilmez */
+}

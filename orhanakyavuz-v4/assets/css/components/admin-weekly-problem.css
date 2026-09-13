@@ -1,0 +1,25 @@
+.admin-weekly-page { padding-block: var(--space-12) var(--space-20); }
+.admin-weekly-header { max-width: 720px; margin-bottom: var(--space-8); }
+.admin-weekly-header h1 { margin-bottom: var(--space-3); }
+.admin-weekly-header p:last-child { color: var(--color-text-secondary); }
+.admin-weekly-status { min-height: 24px; margin-bottom: var(--space-5); color: var(--color-success); }
+.admin-weekly-status[data-state='error'] { color: var(--color-error); }
+.admin-weekly-layout { display: grid; grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr); gap: var(--space-10); align-items: start; }
+.admin-weekly-form-panel, .admin-weekly-list-panel { padding: var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.admin-weekly-form-panel h2, .admin-submissions h2 { margin-top: 0; }
+.admin-weekly-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.admin-weekly-form__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.admin-weekly-list { display: grid; gap: var(--space-3); }
+.admin-problem-item { display: grid; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.admin-problem-item__top { display: flex; justify-content: space-between; gap: var(--space-3); align-items: start; }
+.admin-problem-item__title { margin: 0; font-family: var(--font-heading); font-size: 17px; }
+.admin-problem-item__meta { margin: 0; color: var(--color-text-muted); font-size: 13px; }
+.admin-problem-item__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.admin-problem-item__status { color: var(--color-accent-600); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.admin-weekly-count { color: var(--color-text-muted); font-family: var(--font-mono); }
+.admin-submissions { margin-top: var(--space-10); padding-top: var(--space-8); border-top: 1px solid var(--color-divider); }
+.admin-submission-item { display: grid; gap: var(--space-3); padding: var(--space-4) 0; border-bottom: 1px solid var(--color-divider); }
+.admin-submission-item__answer { margin: 0; color: var(--color-text-primary); font-weight: 600; }
+.admin-submission-item__solution { margin: 0; color: var(--color-text-secondary); white-space: pre-wrap; }
+.admin-submission-item__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 767px) { .admin-weekly-layout { grid-template-columns: 1fr; } .admin-weekly-form__row { grid-template-columns: 1fr; gap: 0; } }

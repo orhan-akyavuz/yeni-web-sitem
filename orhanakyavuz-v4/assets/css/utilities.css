@@ -1,0 +1,231 @@
+/* ============================================================================
+   UTILITIES
+   Az sayıda, yüksek tekrar oranına sahip yardımcı sınıflar. Bu dosya
+   bir "utility-first framework" değildir — yalnızca birden fazla
+   component'te ihtiyaç duyulan, tekrar yazılması anlamsız olan
+   birkaç kritik sınıfı barındırır.
+   ============================================================================ */
+
+/* ------------------------------------------------------------------------
+   VISUALLY HIDDEN — içerik ekran okuyucuda duyurulur, görsel olarak
+   yer kaplamaz. Sprint 4'teki form label'ları ve gizli h2 başlıkları
+   (örn. İstatistikler bölüm başlığı) için kullanılır.
+   ---------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------------
+   SKIP LINK — Sprint 4'teki "İçeriğe geç" linki. Varsayılan gizli,
+   klavye focus alınca sol üstte belirir (WCAG 2.4.1 Bypass Blocks).
+   ---------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: var(--space-4);
+  z-index: 200;
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-ink-fixed);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: var(--radius-md);
+  transition: top var(--transition-fast);
+}
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ------------------------------------------------------------------------
+   METİN HİZALAMA
+   ---------------------------------------------------------------------- */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+
+/* ------------------------------------------------------------------------
+   RENK YARDIMCILARI (yalnızca gerçekten tekrar eden durumlar için)
+   ---------------------------------------------------------------------- */
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+.text-accent { color: var(--color-accent-500); }
+
+/* ------------------------------------------------------------------------
+   GÖRÜNÜRLÜK / DÜZEN YARDIMCILARI
+   ---------------------------------------------------------------------- */
+.hidden { display: none !important; }
+
+@media (max-width: 767px) {
+  .hide-on-mobile { display: none !important; }
+}
+@media (min-width: 768px) {
+  .hide-on-desktop { display: none !important; }
+}
+
+/* ------------------------------------------------------------------------
+   KAPSAYICI GENİŞLİK SINIRI (metin bloklarının 720px'i aşmaması için,
+   Sprint 2 §14 "Readability" ilkesi)
+   ---------------------------------------------------------------------- */
+.measure {
+  max-width: 65ch;
+}
+
+/* ------------------------------------------------------------------------
+   FLEX / GRID YARDIMCILARI — Sprint 13
+   ---------------------------------------------------------------------- */
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+
+/* ------------------------------------------------------------------------
+   METİN TAŞMA YARDIMCILARI — Sprint 13
+   ---------------------------------------------------------------------- */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------------
+   GÖRSEL/ORAN YARDIMCILARI — Sprint 13
+   ---------------------------------------------------------------------- */
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-square { aspect-ratio: 1 / 1; }
+.object-cover { object-fit: cover; }
+
+/* ------------------------------------------------------------------------
+   ARKA PLAN / YÜZEY YARDIMCILARI — Sprint 13
+   ---------------------------------------------------------------------- */
+.bg-surface { background-color: var(--color-surface); }
+.bg-sunken { background-color: var(--color-gray-50); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.border { border: 1px solid var(--color-border); }
+
+/* ------------------------------------------------------------------------
+   EKRAN OKUYUCU İÇİN "YALNIZCA ODAKLANINCA GÖRÜNÜR" — skip-link'in
+   genel amaçlı versiyonu (ör. ileride eklenecek başka atlama linkleri)
+   ---------------------------------------------------------------------- */
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------------
+   PRINT — makale sayfaları yazdırıldığında navbar/footer/TOC/paylaşım
+   gibi etkileşimli öğeler anlamsızdır; yalnızca içerik basılır
+   ---------------------------------------------------------------------- */
+@media print {
+  .site-header,
+  .site-footer,
+  .toc,
+  .toc-mobile,
+  .article-footer__share,
+  .back-to-top,
+  .scroll-progress-bar,
+  .skip-link {
+    display: none !important;
+  }
+  .article-body {
+    max-width: 100%;
+  }
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: var(--color-text-muted);
+  }
+}
+
+/* ------------------------------------------------------------------------
+   SPACING YARDIMCILARI — Sprint 14 audit: sayfalarda tekrar eden satır içi
+   stilleri (margin-top/bottom kalıpları) gerçek sınıflara taşımak için
+   ---------------------------------------------------------------------- */
+.mt-2  { margin-top: var(--space-2); }
+.mt-3  { margin-top: var(--space-3); }
+.mt-4  { margin-top: var(--space-4); }
+.mt-6  { margin-top: var(--space-6); }
+.mt-8  { margin-top: var(--space-8); }
+.mt-10 { margin-top: var(--space-10); }
+.mt-12 { margin-top: var(--space-12); }
+
+.mb-6  { margin-bottom: var(--space-6); }
+.mb-8  { margin-bottom: var(--space-8); }
+.mb-10 { margin-bottom: var(--space-10); }
+
+.text-right { text-align: right; }
+
+/* ------------------------------------------------------------------------
+   SECTION INTRO — kategori/etiket/blog sayfalarında başlık altı açıklama
+   paragrafı için tekrar eden kalıp (Sprint 14 audit)
+   ---------------------------------------------------------------------- */
+.section-intro {
+  color: var(--color-text-secondary);
+  margin-top: calc(-1 * var(--space-6));
+  margin-bottom: var(--space-10);
+}
+.section-intro--centered {
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------------
+   EMPTY STATE — filtre/arama sonucu boş olduğunda (Sprint 14 audit)
+   ---------------------------------------------------------------------- */
+.empty-state {
+  text-align: center;
+  padding: var(--space-16) 0;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------------------------
+   AUTHOR PORTRAIT — Hakkımda sayfasındaki küçük portre (Sprint 14 audit)
+   ---------------------------------------------------------------------- */
+.author-portrait {
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+/* ------------------------------------------------------------------------
+   EK YARDIMCILAR — Sprint 14 audit temizliğinin son parçaları
+   ---------------------------------------------------------------------- */
+.my-8   { margin-block: var(--space-8); }
+.w-full { width: 100%; }
+.py-16  { padding-block: var(--space-16); }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seviye Analizleri | Matematik Dünyam</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <!-- INCLUDE HEADER -->
+  <main id="main-content" class="admin-level-page" data-admin-level-page>
+    <div class="container">
+      <header class="admin-weekly-header">
+        <p class="weekly-problem__eyebrow">Yönetim paneli</p>
+        <h1>Seviye Analizleri</h1>
+        <p>Öğrenci başvurularını incele, soru bazlı değerlendir ve raporla.</p>
+      </header>
+      <form class="admin-level-filters" data-level-filters>
+        <input class="input" name="search" placeholder="Öğrenci ara" />
+        <select class="select" name="examGroup"><option value="">Tüm gruplar</option><option value="tyt-ayt">TYT / AYT</option><option value="ortaokul">Ortaokul</option><option value="kpss">KPSS</option><option value="ales">ALES</option><option value="dgs">DGS</option><option value="diger">Diğer</option></select>
+        <select class="select" name="status"><option value="">Tüm durumlar</option><option value="submitted">Yeni</option><option value="reviewed">İncelendi</option></select>
+        <input class="input" name="from" type="date" aria-label="Başlangıç tarihi" />
+        <input class="input" name="to" type="date" aria-label="Bitiş tarihi" />
+        <button class="button button--primary" type="submit">Filtrele</button>
+      </form>
+      <p class="admin-weekly-status" data-level-status role="status" aria-live="polite"></p>
+      <div class="admin-level-layout">
+        <section class="admin-weekly-list-panel">
+          <div class="section-header"><h2 class="section-header__title">Başvurular</h2><span data-level-count>0</span></div>
+          <div class="admin-level-list" data-level-list></div>
+        </section>
+        <section class="admin-weekly-form-panel admin-level-detail" data-level-detail hidden>
+          <h2 data-detail-title>Başvuru detayı</h2>
+          <div data-detail-student></div>
+          <div class="admin-level-files" data-detail-files></div>
+          <div class="admin-level-topics" data-detail-topics></div>
+          <form data-review-form>
+            <div data-question-results></div>
+            <div class="form-field"><label class="form-label" for="review-level">Seviye etiketi</label><input class="input" id="review-level" name="levelLabel" placeholder="Örn. Orta-İleri" /></div>
+            <div class="form-field"><label class="form-label" for="review-score">Genel puan</label><input class="input" id="review-score" name="overallScore" type="number" min="0" max="100" step="0.1" /></div>
+            <div class="form-field"><label class="form-label" for="review-note">Öğretmen genel notu</label><textarea class="textarea" id="review-note" name="generalNote" rows="5"></textarea></div>
+            <button class="button button--primary" type="submit">Değerlendirmeyi Tamamla</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+  <!-- INCLUDE FOOTER -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

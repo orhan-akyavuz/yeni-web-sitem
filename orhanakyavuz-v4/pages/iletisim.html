@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İletişim — orhanakyavuz</title>
+  <meta name="description" content="Bir proje, iş birliği ya da soru mu var? orhanakyavuz ile iletişime geçin." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Orhan Akyavuz" />
+  <link rel="canonical" href="https://orhanakyavuz.com/pages/iletisim.html" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAFAF8" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="orhanakyavuz" />
+  <meta property="og:title" content="İletişim — orhanakyavuz" />
+  <meta property="og:description" content="Bir proje, iş birliği ya da soru mu var? orhanakyavuz ile iletişime geçin." />
+  <meta property="og:image" content="https://orhanakyavuz.com/assets/images/og/og-cover.jpg" />
+  <meta property="og:url" content="https://orhanakyavuz.com/pages/iletisim.html" />
+  <meta property="og:locale" content="tr_TR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="İletişim — orhanakyavuz" />
+  <meta name="twitter:description" content="Bir proje, iş birliği ya da soru mu var? orhanakyavuz ile iletişime geçin." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+
+  <!-- INCLUDE HEADER: header-b87fd789.html -->
+
+  <main id="main-content">
+
+    <section class="contact py-16 container--reading">
+      <p class="text-overline text-center">İletişim</p>
+      <h1 class="text-h1 text-center mt-3">Bir şeyler mi konuşmak istiyorsunuz?</h1>
+      <p class="text-body-lg text-center mt-3 mb-10">
+        Ders, danışmanlık veya iş birliği teklifleri için aşağıdaki formu doldurabilir
+        ya da doğrudan e-posta gönderebilirsiniz.
+      </p>
+
+      <form class="contact-form" novalidate>
+        <div class="form-field">
+          <label class="form-label" for="contact-name">Ad Soyad</label>
+          <input class="input" type="text" id="contact-name" name="name" autocomplete="name" required aria-required="true" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="contact-email">E-posta</label>
+          <input class="input" type="email" id="contact-email" name="email" autocomplete="email" required aria-required="true" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="contact-message">Mesajınız</label>
+          <textarea class="textarea" id="contact-message" name="message" rows="5" required aria-required="true"></textarea>
+        </div>
+
+        <p class="form-hint" data-form-status hidden role="status" aria-live="polite"></p>
+
+        <button type="submit" class="button button--primary button--large w-full mt-2">
+          Mesajı Gönder
+        </button>
+      </form>
+
+      <div class="text-center mt-12">
+        <p class="text-caption">veya doğrudan ulaşın</p>
+        <ul class="contact__social-list justify-center mt-3" role="list">
+          <li><a href="https://tr.linkedin.com/in/orhan-akyavuz-326739268" aria-label="LinkedIn profilim" rel="me noopener" target="_blank"><img src="/assets/icons/linkedin.svg" alt="" width="20" height="20" aria-hidden="true" /></a></li>
+          <li><a href="https://github.com/orhanakyavuz" aria-label="GitHub profilim" rel="me noopener" target="_blank"><img src="/assets/icons/github.svg" alt="" width="20" height="20" aria-hidden="true" /></a></li>
+          <li><a href="mailto:merhaba@orhanakyavuz.com" aria-label="E-posta gönder"><img src="/assets/icons/mail.svg" alt="" width="20" height="20" aria-hidden="true" /></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- INCLUDE FOOTER: footer.html -->
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

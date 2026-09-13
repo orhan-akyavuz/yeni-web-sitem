@@ -1,0 +1,93 @@
+/* ============================================================================
+   PAGINATION
+   Sprint 7 § 12: numaralı sayfalama, sonsuz kaydırma DEĞİL. Small (32px)
+   buton boyutu — sitenin en "sessiz" öğelerinden biri, dominant olmaz.
+   ============================================================================ */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-16);
+}
+
+.pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.pagination__item:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+}
+
+.pagination__item[aria-current='page'] {
+  background-color: var(--color-accent-500);
+  color: #FFFFFF;
+}
+.pagination__item[aria-current='page']:hover {
+  background-color: var(--color-accent-500); /* aktif sayfa hover'da değişmez */
+}
+
+.pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.pagination__nav-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.pagination__nav-button[aria-disabled='true'] {
+  color: var(--color-gray-300);
+  pointer-events: none;
+}
+.pagination__nav-button img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mobilde yalnızca Önceki/Sonraki — sayfa numaraları gizlenir (Sprint 7 §12.2) */
+.pagination__numbers {
+  display: none;
+}
+@media (min-width: 640px) {
+  .pagination__numbers {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 639px) {
+  .pagination__nav-button {
+    flex: 1;
+    justify-content: center;
+    height: 40px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+}
+
+/* Sprint 13 — eksik :active durumları */
+.pagination__item:active {
+  background-color: var(--color-gray-200);
+}
+.pagination__item[aria-current='page']:active {
+  background-color: var(--color-accent-700);
+}

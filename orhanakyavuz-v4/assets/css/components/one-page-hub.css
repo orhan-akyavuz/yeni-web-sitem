@@ -1,0 +1,359 @@
+/* ============================================================================
+   ONE-PAGE HUB — Craft.do Estetiğinde Blok Blok Akış
+   Hafif gri/beyaz kontrastlar, geniş boşluklar (whitespace) & minimalist tipografi.
+   ============================================================================ */
+
+/* ------------------------------------------------------------------------
+   2. HAFTANIN PROBLEMİ VİTRİN BLOĞU
+   ---------------------------------------------------------------------- */
+.hub-weekly {
+  max-width: min(calc(100% - var(--space-6) * 2), 1040px);
+  margin: 0 auto var(--space-16);
+  padding: 0;
+}
+
+.hub-weekly__card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  padding: var(--space-8) var(--space-6);
+  box-shadow: 0 1px 2px rgba(18, 21, 26, 0.03),
+    0 10px 30px -6px rgba(18, 21, 26, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+@media (min-width: 768px) {
+  .hub-weekly__card {
+    grid-template-columns: 1.5fr 0.9fr;
+    padding: var(--space-10) var(--space-10);
+    border-radius: 32px;
+  }
+}
+
+.hub-weekly__topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.hub-weekly__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background-color: rgba(50, 111, 52, 0.08);
+  color: var(--color-accent-600);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hub-weekly__difficulty {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-gold-600);
+  letter-spacing: 0.02em;
+}
+
+.hub-weekly__title {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 3.2vw, 32px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.hub-weekly__description {
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-6);
+  max-width: 520px;
+}
+
+.hub-weekly__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.hub-weekly__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hub-weekly__meta-dot {
+  color: var(--color-gray-400);
+}
+
+.hub-weekly__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.hub-weekly__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hub-weekly__counter-card {
+  width: 100%;
+  max-width: 260px;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 4px 12px rgba(18, 21, 26, 0.03);
+}
+
+.hub-weekly__counter-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.hub-weekly__counter-number {
+  font-family: var(--font-mono);
+  font-size: clamp(56px, 7vw, 84px);
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--color-accent-700);
+  letter-spacing: -0.04em;
+  margin: var(--space-1) 0;
+}
+
+.hub-weekly__counter-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ------------------------------------------------------------------------
+   3. MATEMATİK SEVİYE ANALİZİ TANITIM BLOĞU (3 Adımlı Kart Akışı)
+   ---------------------------------------------------------------------- */
+.hub-level {
+  max-width: min(calc(100% - var(--space-6) * 2), 1040px);
+  margin: 0 auto var(--space-20);
+  padding: var(--space-12) var(--space-6);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(250, 248, 243, 0.8) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 32px;
+  box-shadow: 0 1px 3px rgba(18, 21, 26, 0.02),
+    0 12px 32px -8px rgba(18, 21, 26, 0.04);
+}
+
+@media (min-width: 768px) {
+  .hub-level {
+    padding: var(--space-16) var(--space-10);
+  }
+}
+
+.hub-level__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-12);
+}
+
+.hub-level__badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent-600);
+  margin-bottom: var(--space-3);
+}
+
+.hub-level__title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.hub-level__subtitle {
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* 3 Adımlı Izgara (Steps Grid) */
+.hub-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .hub-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.hub-step-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(18, 21, 26, 0.03);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease;
+}
+
+.hub-step-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(50, 111, 52, 0.35);
+  box-shadow: 0 12px 28px -6px rgba(18, 21, 26, 0.08);
+}
+
+.hub-step-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.hub-step-card__num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-accent-600);
+  background: rgba(50, 111, 52, 0.08);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.hub-step-card__icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.hub-step-card__title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.hub-step-card__desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.hub-level__cta {
+  display: flex;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------------------
+   4. SON YAZILAR / REHBERLİK BAŞLIK ALANI
+   ---------------------------------------------------------------------- */
+.latest-posts {
+  max-width: min(calc(100% - var(--space-6) * 2), 1040px);
+  margin: 0 auto var(--space-20);
+  padding: 0;
+}
+
+.section-header__eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-600);
+  margin-bottom: var(--space-2);
+}
+
+/* ------------------------------------------------------------------------
+   DARK MODE UYUMU
+   ---------------------------------------------------------------------- */
+:root[data-theme='dark'] .hub-weekly__card {
+  background: #191C22;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme='dark'] .hub-weekly__counter-card {
+  background: #20242D;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='dark'] .hub-weekly__counter-number {
+  color: var(--color-accent-400);
+}
+
+:root[data-theme='dark'] .hub-weekly__counter-status {
+  background: #191C22;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-gray-900);
+}
+
+:root[data-theme='dark'] .hub-level {
+  background: linear-gradient(180deg, #1A1D23 0%, #15181E 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme='dark'] .hub-step-card {
+  background: #1F232B;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='dark'] .hub-step-card:hover {
+  background: #252A34;
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme='dark'] .hub-step-card__num {
+  background: rgba(88, 159, 79, 0.18);
+  color: var(--color-accent-400);
+}

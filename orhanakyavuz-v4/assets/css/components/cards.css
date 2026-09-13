@@ -1,0 +1,418 @@
+/* ============================================================================
+   CARDS
+   Sprint 2 § 9'daki her kart tipinin CSS karşılığı.
+   Genel hover kuralı: scale KULLANILMAZ — yalnızca gölge/kenarlık/zemin
+   geçişi, 150–200ms ease-out (Sprint 2 §9 "genel hover kuralı").
+   ============================================================================ */
+
+/* ------------------------------------------------------------------------
+   ARTICLE CARD — Son Yazılar (Sprint 3 § 3, Sprint 3 § 15 detaylı tanım)
+   ---------------------------------------------------------------------- */
+.article-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4); /* 16px — Mobil */
+}
+@media (min-width: 768px) {
+  .article-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .article-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6); /* 24px — Laptop ve üzeri */
+  }
+}
+
+.article-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  height: 100%;
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+.article-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent-100);
+}
+
+.article-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.article-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: filter var(--transition-base);
+}
+/* Görselde hover sinyali: scale değil, çok hafif karartma katmanı */
+.article-card:hover .article-card__image {
+  filter: brightness(0.98);
+}
+
+.article-card__category {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-500);
+  padding: var(--space-5) var(--space-5) 0;
+}
+
+.article-card__title {
+  padding: var(--space-2) var(--space-5) 0;
+  color: var(--color-text-primary);
+}
+
+.article-card__excerpt {
+  padding: var(--space-2) var(--space-5) 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-card__meta {
+  margin-top: auto;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Yatay varyant — Öne Çıkanlar bölümündeki küçük destekleyici kartlar */
+.article-card--horizontal .article-card__link {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+.article-card--horizontal .article-card__image {
+  width: 96px;
+  height: 96px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+.article-card--horizontal .article-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.article-card--horizontal .article-card__category,
+.article-card--horizontal .article-card__title,
+.article-card--horizontal .article-card__meta {
+  padding: 0;
+  margin: 0;
+}
+.article-card--horizontal .article-card__title { font-size: 16px; }
+
+/* "🔥 Popüler" rozeti — en çok görüntülenen yazılarda gösterilir.
+   Konum: görselin sol üst köşesi; hover'da hafifçe yükselir. */
+.article-card__link { position: relative; }
+.article-card__popular-badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ff9d2e, #ff5f6d);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(255, 95, 109, 0.35);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.article-card:hover .article-card__popular-badge {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 95, 109, 0.45);
+}
+
+/* Okuma ilerleme şeridi — kartın en altında ince, hover'da soldan sağa dolar */
+.article-card__progress {
+  display: block;
+  height: 3px;
+  background-color: var(--color-gray-100, #eee);
+  overflow: hidden;
+}
+.article-card__progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-accent-300), var(--color-accent-500));
+  transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.article-card:hover .article-card__progress-fill { width: 100%; }
+
+/* ------------------------------------------------------------------------
+   FEATURED ARTICLE CARD — Öne Çıkan Makaleler (büyük kart)
+   ---------------------------------------------------------------------- */
+.featured-article-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base);
+}
+.featured-article-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+.featured-article-card__link {
+  display: flex;
+  flex-direction: column;
+}
+.featured-article-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.featured-article-card__category {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-500);
+  padding: var(--space-8) var(--space-8) 0;
+}
+.featured-article-card__title {
+  padding: var(--space-3) var(--space-8) 0;
+  font-size: 26px;
+  color: var(--color-text-primary);
+}
+.featured-article-card__excerpt {
+  padding: var(--space-3) var(--space-8) 0;
+  color: var(--color-text-secondary);
+}
+.featured-article-card__meta {
+  padding: var(--space-4) var(--space-8) 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+.featured-article-card__cta {
+  display: inline-block;
+  padding: var(--space-4) var(--space-8) var(--space-8);
+  font-weight: 600;
+  color: var(--color-accent-500);
+}
+
+/* ------------------------------------------------------------------------
+   CATEGORY CARD — Kategoriler (Sprint 3 § 5)
+   ---------------------------------------------------------------------- */
+.category-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .category-card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .category-card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  transition: border-color var(--transition-fast);
+}
+.category-card:hover {
+  border-color: var(--color-accent-300);
+}
+.category-card img {
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+.category-card:hover img {
+  /* SVG'ler currentColor kullanacak şekilde inline embed edilirse
+     (Sprint 6+) bu kural ikon rengini Accent'e çevirir */
+  filter: none;
+}
+.category-card__name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--color-text-primary);
+}
+.category-card__count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------------------------
+   SERVICE CARD — Çalışma Alanları (Sprint 3 § 7)
+   ---------------------------------------------------------------------- */
+.service-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .service-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .service-card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.service-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.service-card__title {
+  color: var(--color-text-primary);
+}
+.service-card__description {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------------------
+   STAT CARD — İstatistikler (Sprint 3 § 8)
+   ---------------------------------------------------------------------- */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+.stat-card__value {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-accent-500);
+}
+@media (min-width: 1024px) {
+  .stat-card__value { font-size: 40px; }
+}
+.stat-card__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------------------
+   BADGE — Hakkımda kimlik rozetleri
+   ---------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-gray-100);
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+/* ------------------------------------------------------------------------
+   SOCIAL PROOF — Sosyal kanıt şeridi (YouTube / LinkedIn / Toplam Okunma)
+   Koyu zeminli değil; hafif zeminli üç kart, hover'da marka rengine boyar.
+   ---------------------------------------------------------------------- */
+.social-proof__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+@media (min-width: 768px) {
+  .social-proof__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  transition: box-shadow var(--transition-base), border-color var(--transition-base),
+              transform var(--transition-fast);
+}
+a.social-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent-300);
+  transform: translateY(-2px);
+}
+
+.social-card__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.social-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.social-card__value {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.social-card__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.social-card__cta {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent-500);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+a.social-card:hover .social-card__cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Marka vurguları — ikon rengi SVG'ler currentColor kullanmıyorsa
+   ikon yanındaki değer rengi markayı ima eder */
+.social-card--youtube .social-card__value { color: #ff0000; }
+.social-card--linkedin .social-card__value { color: #0a66c2; }

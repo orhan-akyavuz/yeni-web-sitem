@@ -1,0 +1,10 @@
+node_modules/
+.vercel/
+dist/
+public/
+orhanakyavuz-v4/public/
+orhanakyavuz-v4/backend/node_modules/
+orhanakyavuz-v4/backend/db/orhanakyavuz.sqlite
+orhanakyavuz-v4/backend/.env
+*.log
+.DS_Store

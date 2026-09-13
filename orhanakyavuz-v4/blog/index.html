@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yazılar — orhanakyavuz</title>
+  <meta name="description" content="Matematik, veri analizi, Python, SQL, yapay zekâ, eğitim ve teknoloji üzerine tüm yazılar — kategoriye, etikete veya tarihe göre filtreleyin." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Orhan Akyavuz" />
+  <link rel="canonical" href="https://orhanakyavuz.com/blog/" />
+
+  <link rel="icon" href="/assets/icons/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/icons/icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/icons/icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAFAF8" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="orhanakyavuz" />
+  <meta property="og:title" content="Yazılar — orhanakyavuz" />
+  <meta property="og:description" content="Matematik, veri analizi, Python, SQL, yapay zekâ, eğitim ve teknoloji üzerine tüm yazılar — kategoriye, etikete veya tarihe göre filtreleyin." />
+  <meta property="og:image" content="https://orhanakyavuz.com/assets/images/og/og-cover.jpg" />
+  <meta property="og:url" content="https://orhanakyavuz.com/blog/" />
+  <meta property="og:locale" content="tr_TR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yazılar — orhanakyavuz" />
+  <meta name="twitter:description" content="Matematik, veri analizi, Python, SQL, yapay zekâ, eğitim ve teknoloji üzerine tüm yazılar — kategoriye, etikete veya tarihe göre filtreleyin." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+
+  <!-- INCLUDE HEADER: header.html -->
+
+  <main id="main-content">
+
+      <nav class="breadcrumb" aria-label="İçerik yolu">
+    <ol class="breadcrumb__list">
+      <li class="breadcrumb__item"><a class="breadcrumb__link" href="/">Ana Sayfa</a><span class="breadcrumb__separator" aria-hidden="true"><img src="/assets/icons/chevron-right.svg" alt="" width="14" height="14" /></span></li>
+      <li class="breadcrumb__item"><span class="breadcrumb__current" aria-current="page">Yazılar</span></li>
+    </ol>
+  </nav>
+
+
+    <section class="latest-posts">
+      <div class="section-header">
+        <h1 class="text-h1">Yazılar</h1>
+      </div>
+
+      <p data-search-heading hidden class="mb-6 text-secondary">
+        <span data-query></span> için arama sonuçları
+      </p>
+
+      <div class="filter-bar">
+        <div class="filter-bar__group filter-bar__group--desktop" data-filter-group>
+          <label class="visually-hidden" for="filter-category">Kategoriye göre filtrele</label>
+          <select id="filter-category" class="filter-bar__select" data-filter="category">
+            <option value="all">Tüm Kategoriler</option>
+            <option value="matematik">Matematik</option>
+            <option value="veri-analizi">Veri Analizi</option>
+            <option value="python-sql">Python &amp; SQL</option>
+            <option value="yapay-zeka">Yapay Zekâ</option>
+            <option value="kariyer">Kariyer</option>
+            <option value="egitim">Eğitim</option>
+            <option value="teknoloji">Teknoloji</option>
+            <option value="akademik-yazilar">Akademik Yazılar</option>
+          </select>
+        </div>
+
+        <div class="filter-bar__group">
+          <p class="filter-bar__result-count" data-result-count>10 yazı</p>
+          <label class="visually-hidden" for="filter-sort">Sırala</label>
+          <select id="filter-sort" class="filter-bar__select" data-filter="sort">
+            <option value="newest">En Yeni</option>
+            <option value="oldest">En Eski</option>
+            <option value="alphabetical">Alfabetik (A–Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <ul class="article-card-grid" role="list" data-filterable data-dynamic-articles="all">
+      </ul>
+
+      <p data-empty-state hidden class="empty-state">
+        Aradığınız kriterlere uyan yazı bulunamadı.
+      </p>
+
+      <nav class="pagination" aria-label="Sayfalama">
+        <a class="pagination__nav-button" href="#" aria-disabled="true" aria-label="Önceki sayfa">
+          <img src="/assets/icons/chevron-left.svg" alt="" aria-hidden="true" /> Önceki
+        </a>
+        <div class="pagination__numbers">
+          <a class="pagination__item" href="#" aria-current="page">1</a>
+        </div>
+        <a class="pagination__nav-button" href="#" aria-disabled="true" aria-label="Sonraki sayfa">
+          Sonraki <img src="/assets/icons/chevron-right.svg" alt="" aria-hidden="true" />
+        </a>
+      </nav>
+    </section>
+  </main>
+
+  <!-- INCLUDE FOOTER: footer.html -->
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

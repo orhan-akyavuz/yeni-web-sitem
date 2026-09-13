@@ -1,0 +1,26 @@
+{
+  "name": "orhanakyavuz — Matematik, Veri Analizi ve Yapay Zekâ Üzerine Yazılar",
+  "short_name": "orhanakyavuz",
+  "description": "Uludağ Üniversitesi Matematik mezunu Orhan Akyavuz'un matematik, veri analizi, Python, SQL, yapay zekâ ve akademik konularda yazdığı kişisel içerik alanı.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "tr",
+  "background_color": "#FAFAF8",
+  "theme_color": "#0f6b47",
+  "icons": [
+    {
+      "src": "/assets/icons/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+/* ============================================================================
+   MAIN.CSS
+   orhanakyavuz.com — Ana stylesheet giriş noktası.
+   Yalnızca @import ile modülleri birleştirir; burada başka hiçbir
+   kural yazılmaz — tek sorumluluk: doğru yükleme sırası.
+
+   ============================================================================
+   BREAKPOINT REFERANSI (Sprint 2 § 11 — proje genelinde sabit)
+     Mobile        : 320px – 767px   (temel/varsayılan kurallar)
+     Tablet        : min-width 768px
+     Laptop        : min-width 1024px
+     Desktop       : min-width 1440px
+     Large Desktop : min-width 1920px
+     UltraWide     : min-width 2560px
+   ============================================================================
+
+   YÜKLEME SIRASI (kaskad öncelik sırasıyla, üstten alta):
+   1. base/     → değişkenler, reset, tipografi (her şeyin temeli)
+   2. layout/   → grid, container, section iskeleti (yapısal kurallar)
+   3. components/ → navbar, hero, buton, kart, form, footer (görsel bileşenler)
+   4. utilities → en yüksek öncelikli, nokta atışı override'lar
+   ============================================================================ */
+
+/* 1. BASE */
+@import url('base/variables.css');
+@import url('base/reset.css');
+@import url('base/typography.css');
+@import url('base/dark-mode.css');
+
+/* 2. LAYOUT */
+@import url('layout/grid.css');
+@import url('layout/sections.css');
+
+/* 3. COMPONENTS */
+@import url('components/navbar.css');
+@import url('components/hero.css');
+@import url('components/buttons.css');
+@import url('components/cards.css');
+@import url('components/forms.css');
+@import url('components/footer.css');
+@import url('components/breadcrumb.css');
+@import url('components/pagination.css');
+@import url('components/filter-bar.css');
+@import url('components/tag-cloud.css');
+@import url('components/article-content.css');
+@import url('components/static-pages.css');
+@import url('components/overlay.css');
+@import url('components/weekly-problem.css');
+@import url('components/level-analysis.css');
+@import url('components/one-page-hub.css');
+@import url('components/admin-level-analysis.css');
+@import url('components/admin-weekly-problem.css');
+@import url('components/weekly-archive.css');
+@import url('components/auth.css');
+
+/* 4. UTILITIES — her zaman en son yüklenir (en yüksek kaskad önceliği) */
+@import url('utilities.css');
+
+/*
+  Performans notu: Üretim ortamına çıkarken bu @import zinciri bir
+  build adımıyla (esbuild/PostCSS/Vite) TEK bir dosyada birleştirilip
+  minify edilmelidir — @import zinciri geliştirme sırasında okunabilirlik
+  için idealdir, ama tarayıcıda art arda ağ isteği anlamına geldiğinden
+  prod ortamında performans maliyeti taşır (Sprint 5 "performans odaklı"
+  ilkesi bu notla karşılanır; gerçek bundling adımı Sprint 6+ kapsamıdır).
+*/

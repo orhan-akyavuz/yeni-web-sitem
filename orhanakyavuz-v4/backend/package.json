@@ -1,0 +1,20 @@
+{
+  "name": "orhanakyavuz-backend",
+  "version": "1.0.0",
+  "description": "orhanakyavuz.com için Express + node:sqlite tabanlı gerçek API sunucusu (makaleler, kategoriler, etiketler, arama, iletişim, bülten)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --experimental-sqlite server.js",
+    "seed": "node --experimental-sqlite db/seed.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "nodemailer": "^9.0.5"
+  }
+}

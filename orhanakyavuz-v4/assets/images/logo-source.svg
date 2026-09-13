@@ -1,0 +1,9 @@
+<!-- Site master logo source for favicon/icon generation -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="2048" height="2048">
+  <rect width="24" height="24" rx="6" fill="#2454D6" />
+  <g fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="9" x2="9" y1="6" y2="18" />
+    <path d="M6 8.5c0-1.4 1.1-2.5 2.5-2.5H17" />
+    <path d="M16 18c-1.4 0-2.5-1.1-2.5-2.5V6" />
+  </g>
+</svg>

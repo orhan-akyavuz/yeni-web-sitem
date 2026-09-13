@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haftanın Problemi | Matematik Dünyam</title>
+  <meta name="description" content="Matematik Dünyam'da bu haftanın problemini çöz, cevabını gönder ve ilerlemeni takip et." />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <!-- INCLUDE HEADER -->
+  <main id="main-content" class="weekly-problem-page" data-weekly-problem-page>
+    <section class="weekly-problem-hero" aria-labelledby="weekly-problem-heading">
+      <div class="container">
+        <p class="weekly-problem__eyebrow">Matematik Dünyam / Haftalık meydan okuma</p>
+        <div class="weekly-problem-hero__topline">
+          <span class="weekly-problem__topic" data-problem-topic>Problem yükleniyor</span>
+          <span class="weekly-problem__difficulty" data-problem-difficulty aria-label="Zorluk seviyesi"></span>
+        </div>
+        <h1 id="weekly-problem-heading" class="weekly-problem__title" data-problem-title>Bu haftanın problemi</h1>
+        <p class="weekly-problem__meta">
+          <span data-problem-grade>Seviye belirleniyor</span>
+          <span aria-hidden="true">·</span>
+          <span>Önerilen süre: 20 dakika</span>
+        </p>
+        <div class="weekly-problem-countdown" aria-live="polite">
+          <span class="weekly-problem-countdown__label">Kalan süre</span>
+          <strong class="weekly-problem-countdown__value" data-problem-countdown>--:--:--</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="weekly-problem-layout container">
+      <article class="weekly-problem-content" aria-labelledby="problem-content-heading">
+        <h2 id="problem-content-heading" class="visually-hidden">Problem metni</h2>
+        <div class="weekly-problem-content__body prose" data-problem-content>
+          <p>Problem hazırlanıyor...</p>
+        </div>
+      </article>
+
+      <aside class="weekly-problem-submit" aria-labelledby="submission-heading">
+        <h2 id="submission-heading" class="weekly-problem-submit__title">Çözümünü gönder</h2>
+        <p class="weekly-problem-submit__intro">Önce cevabını yaz. Açıklamanı eklersen doğru çözüm için daha yüksek puan kazanırsın.</p>
+        <form class="weekly-problem-form" data-problem-form novalidate>
+          <div class="form-field">
+            <label class="form-label" for="problem-answer">Cevabın</label>
+            <input class="input" id="problem-answer" name="answer" type="text" required maxlength="2000" autocomplete="off" />
+            <span class="form-hint" data-answer-hint>Örnek: 12 veya $x = 3$</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="problem-solution">Çözüm açıklaman <span class="form-label__optional">(isteğe bağlı)</span></label>
+            <textarea class="textarea" id="problem-solution" name="solution" maxlength="10000" rows="7" placeholder="Hangi adımları izlediğini anlat..."></textarea>
+            <span class="form-hint">Açıklamalı doğru çözüm 15 puan, yalnızca doğru cevap 10 puandır.</span>
+          </div>
+          <button class="button button--primary button--large" type="submit">Cevabı Gönder <span aria-hidden="true">→</span></button>
+          <p class="weekly-problem-form__status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+      </aside>
+    </div>
+
+    <section class="weekly-problem-progress container" aria-labelledby="progress-heading">
+      <div class="weekly-problem-progress__column">
+        <div class="section-header">
+          <h2 id="progress-heading" class="section-header__title">Haftanın Matematikçileri</h2>
+          <span class="weekly-problem-progress__caption">Toplam puana göre</span>
+        </div>
+        <ol class="weekly-leaderboard" data-leaderboard aria-live="polite">
+          <li class="weekly-leaderboard__state">Sıralama yükleniyor...</li>
+        </ol>
+      </div>
+      <aside class="weekly-progress-card" data-my-progress hidden aria-labelledby="my-progress-heading">
+        <h2 id="my-progress-heading">Senin ilerlemen</h2>
+        <div class="weekly-progress-card__metrics">
+          <div><strong data-my-score>0</strong><span>puan</span></div>
+          <div><strong data-my-streak>0</strong><span>haftalık seri</span></div>
+        </div>
+        <div class="weekly-progress-card__badges" data-my-badges></div>
+      </aside>
+    </section>
+  </main>
+  <!-- INCLUDE FOOTER -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
