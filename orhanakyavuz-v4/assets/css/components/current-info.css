@@ -1,0 +1,369 @@
+/* ============================================================================
+   CURRENT-INFO.CSS
+   Güncel Bilgiler modülü: Kullanıcı feed listesi ve Admin yönetim stilleri.
+   BEM metodolojisi ve variables.css token'larına tam uyumlu.
+   ============================================================================ */
+
+/* ------------------------------------------------------------------------
+   Kullanıcı Sayfası Layout
+   ------------------------------------------------------------------------ */
+.current-info-page {
+  padding-block: var(--space-12) var(--space-20);
+}
+
+.current-info-header {
+  max-width: 800px;
+  margin-bottom: var(--space-8);
+}
+
+.current-info-header h1 {
+  margin-bottom: var(--space-3);
+}
+
+.current-info-header p {
+  color: var(--color-text-secondary);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------------------
+   Filtreleme ve Arama Çubuğu
+   ------------------------------------------------------------------------ */
+.current-info-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+  padding: var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .current-info-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.current-info-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .current-info-search-box {
+    max-width: 360px;
+  }
+}
+
+.current-info-search-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 var(--space-4) 0 var(--space-10);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.current-info-search-input:focus {
+  outline: none;
+  border-color: var(--color-accent-400);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.current-info-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.current-info-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.current-info-pill {
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 9999px;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.current-info-pill:hover {
+  background-color: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.current-info-pill--active {
+  background-color: var(--color-accent-600);
+  border-color: var(--color-accent-600);
+  color: #ffffff !important;
+}
+
+/* ------------------------------------------------------------------------
+   Bilgi Kartları Grid & Kart Tasarımı
+   ------------------------------------------------------------------------ */
+.current-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .current-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .current-info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.update-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  position: relative;
+}
+
+.update-card:hover {
+  border-color: var(--color-accent-200);
+  box-shadow: var(--shadow-md);
+}
+
+.update-card--featured {
+  border-left: 4px solid var(--color-accent-600);
+}
+
+.update-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.update-card__source {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent-600);
+}
+
+.update-card__badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  background-color: rgba(37, 99, 235, 0.08);
+  color: var(--color-accent-700);
+}
+
+.update-card__title {
+  margin: 0 0 var(--space-3);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.update-card__summary {
+  margin: 0 0 var(--space-5);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  flex-grow: 1;
+}
+
+.update-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-divider);
+  margin-top: auto;
+}
+
+.update-card__date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.update-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent-600);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.update-card__btn:hover {
+  color: var(--color-accent-800);
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------------
+   Durumlar: Loading, Error, Empty
+   ------------------------------------------------------------------------ */
+.current-info-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-16) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-secondary);
+}
+
+.current-info-state p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.current-info-state--error {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #dc2626;
+}
+
+/* ------------------------------------------------------------------------
+   Admin Yönetim Paneli
+   ------------------------------------------------------------------------ */
+.admin-current-page {
+  padding-block: var(--space-12) var(--space-20);
+}
+
+.admin-current-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .admin-current-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-current-form-panel,
+.admin-current-list-panel {
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.admin-current-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.admin-current-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 600px) {
+  .admin-current-form__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+.admin-current-item {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  background-color: var(--color-background);
+}
+
+.admin-current-item__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.admin-current-item__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.admin-current-item__status {
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.admin-current-item__status--published {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.admin-current-item__status--draft {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.admin-current-item__status--archived {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.admin-current-item__meta {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.admin-current-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}

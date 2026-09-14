@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Güncel Bilgiler Yönetimi | orhanakyavuz</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <!-- INCLUDE HEADER -->
+
+  <main id="main-content" class="admin-current-page" data-admin-current-page>
+    <div class="container">
+      <header class="admin-weekly-header">
+        <p class="weekly-problem__eyebrow">Yönetim Paneli</p>
+        <h1>Güncel Bilgiler Yönetimi</h1>
+        <p>Banka sınavları, kamu iş ilanları ve sınav duyurularını ekleyin, düzenleyin ve yayınlayın.</p>
+        <div style="display: flex; gap: var(--space-3); margin-top: var(--space-3);">
+          <a class="button button--outline button--small" href="/admin/haftanin-problemi/">Haftanın Problemi</a>
+          <a class="button button--outline button--small" href="/admin/seviye-analizleri/">Seviye Analizleri</a>
+        </div>
+      </header>
+
+      <p class="admin-weekly-status" data-admin-status role="status" aria-live="polite"></p>
+
+      <div class="admin-current-layout">
+        <section class="admin-current-form-panel" aria-labelledby="form-heading">
+          <h2 id="form-heading" style="margin-top: 0;">İçerik Ekle / Düzenle</h2>
+          <form class="admin-current-form" data-admin-form>
+            <input type="hidden" name="id" />
+
+            <div class="form-field">
+              <label class="form-label" for="current-source">Resmî Kaynak *</label>
+              <select class="select" id="current-source" name="sourceId" required>
+                <option value="">Yükleniyor...</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="current-title">Başlık *</label>
+              <input class="input" id="current-title" name="title" required
+                placeholder="Örn: VakıfBank Müfettiş Yardımcılığı Sınavı" />
+            </div>
+
+            <div class="admin-current-form__row">
+              <div class="form-field">
+                <label class="form-label" for="current-category">Kategori *</label>
+                <select class="select" id="current-category" name="category" required>
+                  <option value="banka">Banka İlanı</option>
+                  <option value="kamu">Kamu Duyurusu</option>
+                  <option value="ags">AGS</option>
+                  <option value="kpss">KPSS</option>
+                  <option value="ales">ALES</option>
+                  <option value="dgs">DGS</option>
+                  <option value="egitim">Eğitim</option>
+                  <option value="diger">Diğer</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="current-status">Yayın Durumu *</label>
+                <select class="select" id="current-status" name="status" required>
+                  <option value="published">Yayında (Published)</option>
+                  <option value="draft">Taslak (Draft)</option>
+                  <option value="archived">Arşiv (Archived)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="current-url">Resmî İnceleme URL'si *</label>
+              <input type="url" class="input" id="current-url" name="originalUrl" required placeholder="https://..." />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="current-summary">Kısa Özet</label>
+              <textarea class="textarea" id="current-summary" name="summary" rows="3"
+                placeholder="Başvuru şartları, son tarih veya kısa açıklama..."></textarea>
+            </div>
+
+            <div class="admin-current-form__row">
+              <div class="form-field">
+                <label class="form-label" for="current-date">Yayın Tarihi</label>
+                <input class="input" type="datetime-local" id="current-date" name="publishDate" />
+              </div>
+              <div class="form-field"
+                style="display: flex; align-items: center; gap: var(--space-2); margin-top: 28px;">
+                <input type="checkbox" id="current-featured" name="isFeatured" />
+                <label for="current-featured" style="cursor: pointer; font-size: 14px;">Öne Çıkarılan İlan</label>
+              </div>
+            </div>
+
+            <div class="admin-weekly-form__actions" style="margin-top: var(--space-4);">
+              <button class="button button--primary button--medium" type="submit">Kaydet</button>
+              <button class="button button--outline button--medium" type="button" data-admin-reset>Formu
+                Temizle</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-current-list-panel" aria-labelledby="list-heading">
+          <div class="section-header"
+            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+            <h2 id="list-heading" class="section-header__title" style="margin: 0;">Mevcut İçerikler</h2>
+            <span class="admin-weekly-count" data-admin-count>0 kayıt</span>
+          </div>
+          <div class="admin-current-list" data-admin-list>
+            <p>Kayıtlar yükleniyor...</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- INCLUDE FOOTER -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+
+</html>

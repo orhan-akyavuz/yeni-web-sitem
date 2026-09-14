@@ -19,6 +19,8 @@ import { aiRouter } from './routes/ai.js';
 import { authRouter } from './routes/auth.js';
 import { levelAnalysisRouter } from './routes/levelAnalysis.js';
 import { adminLevelAnalysisRouter } from './routes/adminLevelAnalysis.js';
+import { currentInfoRouter } from './routes/currentInfo.js';
+import { adminCurrentInfoRouter } from './routes/adminCurrentInfo.js';
 import { errorHandler, sendError } from './middleware/response.js';
 
 const app = express();
@@ -66,6 +68,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/level-analysis/uploads', express.raw({ type: ['image/jpeg', 'image/png', 'image/webp'], limit: '8mb' }));
 app.use('/api/level-analysis', levelAnalysisRouter);
 app.use('/api/admin/level-analysis', adminLevelAnalysisRouter);
+app.use('/api/current-info', currentInfoRouter);
+app.use('/api/admin/current-info', adminCurrentInfoRouter);
 
 // Tanımsız API rotaları için tutarlı 404 zarfı
 app.use('/api', (req, res) => sendError(res, 404, 'NOT_FOUND', 'İstenen API uç noktası bulunamadı.'));

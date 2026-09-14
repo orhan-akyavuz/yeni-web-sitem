@@ -77,6 +77,8 @@ const MODULES = [
   { path: './modules/level-analysis.js', init: 'initLevelAnalysis' },
   { path: './modules/admin-level-analysis.js', init: 'initAdminLevelAnalysis' },
   { path: './modules/level-analysis-report.js', init: 'initLevelAnalysisReport' },
+  { path: './modules/current-info.js', init: 'initCurrentInfo' },
+  { path: './modules/admin-current-info.js', init: 'initAdminCurrentInfo' },
 ];
 
 async function bootstrap() {

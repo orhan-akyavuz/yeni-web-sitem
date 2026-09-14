@@ -77,6 +77,61 @@ export function validateWeeklyProblemPayload(body) {
   return { valid: Object.keys(errors).length === 0, errors, clean };
 }
 
+export function validateCurrentUpdatePayload(body) {
+  const errors = {};
+  const clean = {
+    sourceId: Number(body?.sourceId),
+    title: (body?.title ?? '').toString().trim(),
+    summary: (body?.summary ?? '').toString().trim(),
+    originalUrl: (body?.originalUrl ?? '').toString().trim(),
+    category: (body?.category ?? '').toString().trim().toLowerCase(),
+    publishDate: (body?.publishDate ?? new Date().toISOString()).toString().trim(),
+    status: (body?.status ?? 'published').toString().trim().toLowerCase(),
+    isFeatured: Boolean(body?.isFeatured),
+    externalId: (body?.externalId ?? '').toString().trim() || null,
+  };
+
+  if (!Number.isSafeInteger(clean.sourceId) || clean.sourceId < 1) {
+    errors.sourceId = 'Geçerli bir resmî kaynak seçilmelidir.';
+  }
+  if (!clean.title) {
+    errors.title = 'Başlık zorunludur.';
+  } else if (clean.title.length > 250) {
+    errors.title = 'Başlık çok uzun (en fazla 250 karakter).';
+  }
+
+  if (!clean.originalUrl) {
+    errors.originalUrl = 'Resmî içerik adresi (URL) zorunludur.';
+  } else {
+    try {
+      const parsedUrl = new URL(clean.originalUrl);
+      if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+        errors.originalUrl = 'Resmî içerik adresi http veya https protokolüyle başlamalıdır.';
+      }
+    } catch {
+      errors.originalUrl = 'Lütfen geçerli bir internet adresi (URL) girin.';
+    }
+  }
+
+  const validCategories = ['banka', 'kamu', 'ags', 'kpss', 'ales', 'dgs', 'egitim', 'diger'];
+  if (!clean.category) {
+    errors.category = 'Kategori zorunludur.';
+  } else if (!validCategories.includes(clean.category)) {
+    errors.category = `Geçersiz kategori. İzin verilenler: ${validCategories.join(', ')}`;
+  }
+
+  const validStatuses = ['draft', 'published', 'archived'];
+  if (!validStatuses.includes(clean.status)) {
+    errors.status = `Geçersiz durum. İzin verilenler: ${validStatuses.join(', ')}`;
+  }
+
+  if (clean.publishDate && isNaN(Date.parse(clean.publishDate))) {
+    errors.publishDate = 'Geçersiz yayın tarihi.';
+  }
+
+  return { valid: Object.keys(errors).length === 0, errors, clean };
+}
+
 /**
  * Çok basit, bağımlılıksız bir "sabit pencere" rate limiter.
  * IP başına dakikada `max` istekle sınırlar — üretimde Redis tabanlı bir

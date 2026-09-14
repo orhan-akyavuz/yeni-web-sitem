@@ -52,6 +52,7 @@
 @import url('components/admin-weekly-problem.css');
 @import url('components/weekly-archive.css');
 @import url('components/auth.css');
+@import url('components/current-info.css');
 
 /* 4. UTILITIES — her zaman en son yüklenir (en yüksek kaskad önceliği) */
 @import url('utilities.css');

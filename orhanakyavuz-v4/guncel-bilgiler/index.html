@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Güncel Bilgiler &amp; Resmî İlanlar | orhanakyavuz</title>
+  <meta name="description" content="Banka sınavları, kamu duyuruları, AGS, KPSS, ALES, DGS ve resmî kariyer/eğitim içerikleri tek bir güvenilir merkezde." />
+  <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <!-- INCLUDE HEADER -->
+
+  <main id="main-content" class="current-info-page" data-current-info-page>
+    <div class="container">
+      <header class="current-info-header">
+        <p class="weekly-problem__eyebrow">Resmî Duyurular &amp; Sınavlar</p>
+        <h1>Güncel Bilgiler</h1>
+        <p>
+          VakıfBank, Ziraat Bankası, Halkbank, İş Bankası, ÖSYM ve kamu kurumlarının yayımladığı en güncel iş ilanları, sınav takvimleri ve resmî duyuruları doğrudan resmî kaynak bağlantılarıyla takip edin.
+        </p>
+      </header>
+
+      <section class="current-info-toolbar" aria-label="Arama ve Filtreleme">
+        <div class="current-info-categories" role="group" aria-label="Kategoriye göre filtrele">
+          <button type="button" class="current-info-pill current-info-pill--active" data-category-filter="all" aria-pressed="true">Tümü</button>
+          <button type="button" class="current-info-pill" data-category-filter="banka" aria-pressed="false">Banka İlanları</button>
+          <button type="button" class="current-info-pill" data-category-filter="kamu" aria-pressed="false">Kamu Duyuruları</button>
+          <button type="button" class="current-info-pill" data-category-filter="ags" aria-pressed="false">AGS</button>
+          <button type="button" class="current-info-pill" data-category-filter="kpss" aria-pressed="false">KPSS</button>
+          <button type="button" class="current-info-pill" data-category-filter="ales" aria-pressed="false">ALES</button>
+          <button type="button" class="current-info-pill" data-category-filter="dgs" aria-pressed="false">DGS</button>
+          <button type="button" class="current-info-pill" data-category-filter="egitim" aria-pressed="false">Eğitim</button>
+        </div>
+
+        <div class="current-info-search-box">
+          <svg class="current-info-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="search"
+            class="current-info-search-input"
+            data-current-search
+            placeholder="İlan veya sınav ara..."
+            aria-label="Güncel bilgiler içinde ara"
+          />
+        </div>
+      </section>
+
+      <div class="weekly-archive-toolbar" style="margin-bottom: var(--space-4);">
+        <p data-current-count aria-live="polite">Duyurular yükleniyor...</p>
+      </div>
+
+      <section class="current-info-grid" data-current-grid aria-live="polite">
+        <div class="current-info-state" role="status">
+          <p>Güncel duyurular yükleniyor...</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- INCLUDE FOOTER -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

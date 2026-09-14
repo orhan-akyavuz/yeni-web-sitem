@@ -23,7 +23,7 @@ After generation, add the following tags into your `<head>` (paste into `orhanak
 
 ```html
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=4">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
 <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#0f6b47">
