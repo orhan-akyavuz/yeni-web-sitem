@@ -3,6 +3,8 @@
 // orhanakyavuz.com API sunucusu.
 // Çalıştırma: cd backend && npm install && npm run seed && npm start
 // ----------------------------------------------------------------------
+import cors from 'cors';
+import helmet from 'helmet';
 import 'dotenv/config';
 import express from 'express';
 import { articlesRouter } from './routes/articles.js';
@@ -25,7 +27,19 @@ import { errorHandler, sendError } from './middleware/response.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-
+app.set('trust proxy', 1);
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "https://*.supabase.co"],
+    },
+  },
+}));
 // ------------------------------------------------------------------------
 // CORS — frontend (statik site) farklı bir origin'den (örn. Live Server
 // veya start-server.sh ile 8000 portundan) API'ye istek atacağı için
