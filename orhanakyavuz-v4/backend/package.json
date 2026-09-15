@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node --experimental-sqlite server.js",
-    "seed": "node --experimental-sqlite db/seed.js"
+    "seed": "node --experimental-sqlite db/seed.js",
+    "test:ingest": "node --test ingest/normalizer.test.js"
   },
   "engines": {
     "node": ">=22.5.0"

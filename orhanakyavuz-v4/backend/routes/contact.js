@@ -1,6 +1,6 @@
 // backend/routes/contact.js
 import { Router } from 'express';
-import { db } from '../db/connection.js';
+import { supabaseAdmin } from '../services/supabase.js';
 import { sendSuccess, sendError } from '../middleware/response.js';
 import { validateContactPayload, rateLimit } from '../middleware/validation.js';
 import { sendContactNotification, mailerConfigured } from '../services/mailer.js';
@@ -16,8 +16,16 @@ contactRouter.post('/', contactRateLimit, async (req, res) => {
     return sendError(res, 422, 'VALIDATION_ERROR', JSON.stringify(errors));
   }
 
-  const stmt = db.prepare('INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)');
-  const result = stmt.run(clean.name, clean.email, clean.message);
+  const { data: inserted, error: insertError } = await supabaseAdmin
+    .from('contact_messages')
+    .insert({ name: clean.name, email: clean.email, message: clean.message })
+    .select('id')
+    .single();
+
+  if (insertError) {
+    console.error('[contact] Supabase insert hatası:', insertError.message);
+    return sendError(res, 500, 'DB_ERROR', 'Mesaj kaydedilemedi.');
+  }
 
   // Mesaj HER ZAMAN veritabanına yazılır (yukarıda) — e-posta bildirimi
   // yalnızca .env'de gerçek SMTP bilgileri varsa GERÇEKTEN gönderilir.
@@ -33,7 +41,7 @@ contactRouter.post('/', contactRateLimit, async (req, res) => {
   }
 
   sendSuccess(res, {
-    id: Number(result.lastInsertRowid),
+    id: inserted.id,
     received: true,
     emailNotificationSent: emailSent,
     mailerConfigured,

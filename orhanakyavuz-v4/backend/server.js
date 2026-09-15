@@ -23,6 +23,7 @@ import { levelAnalysisRouter } from './routes/levelAnalysis.js';
 import { adminLevelAnalysisRouter } from './routes/adminLevelAnalysis.js';
 import { currentInfoRouter } from './routes/currentInfo.js';
 import { adminCurrentInfoRouter } from './routes/adminCurrentInfo.js';
+import { startIngestScheduler } from './ingest/index.js';
 import { errorHandler, sendError } from './middleware/response.js';
 
 const app = express();
@@ -89,6 +90,8 @@ app.use('/api/admin/current-info', adminCurrentInfoRouter);
 app.use('/api', (req, res) => sendError(res, 404, 'NOT_FOUND', 'İstenen API uç noktası bulunamadı.'));
 
 app.use(errorHandler);
+
+startIngestScheduler();
 
 app.listen(PORT, () => {
   console.log(`orhanakyavuz API http://localhost:${PORT} adresinde çalışıyor.`);

@@ -1,6 +1,6 @@
 // backend/routes/newsletter.js
 import { Router } from 'express';
-import { db } from '../db/connection.js';
+import { supabaseAdmin } from '../services/supabase.js';
 import { sendSuccess, sendError } from '../middleware/response.js';
 import { validateNewsletterPayload, rateLimit } from '../middleware/validation.js';
 import { sendNewsletterWelcome, mailerConfigured } from '../services/mailer.js';
@@ -16,14 +16,27 @@ newsletterRouter.post('/', newsletterRateLimit, async (req, res) => {
     return sendError(res, 422, 'VALIDATION_ERROR', JSON.stringify(errors));
   }
 
-  const existing = db.prepare('SELECT id FROM newsletter_subscribers WHERE email = ?').get(clean.email);
+  const { data: existing } = await supabaseAdmin
+    .from('newsletter_subscribers')
+    .select('id')
+    .eq('email', clean.email)
+    .maybeSingle();
+
   if (existing) {
     // Zaten kayıtlıysa hata değil, aynı başarı sonucu döner (idempotent davranış)
     return sendSuccess(res, { alreadySubscribed: true }, 200);
   }
 
-  const stmt = db.prepare('INSERT INTO newsletter_subscribers (email) VALUES (?)');
-  const result = stmt.run(clean.email);
+  const { data: inserted, error: insertError } = await supabaseAdmin
+    .from('newsletter_subscribers')
+    .insert({ email: clean.email })
+    .select('id')
+    .single();
+
+  if (insertError) {
+    console.error('[newsletter] Supabase insert hatası:', insertError.message);
+    return sendError(res, 500, 'DB_ERROR', 'Abonelik kaydedilemedi.');
+  }
 
   let emailSent = false;
   try {
@@ -34,7 +47,7 @@ newsletterRouter.post('/', newsletterRateLimit, async (req, res) => {
   }
 
   sendSuccess(res, {
-    id: Number(result.lastInsertRowid),
+    id: inserted.id,
     subscribed: true,
     emailNotificationSent: emailSent,
     mailerConfigured,

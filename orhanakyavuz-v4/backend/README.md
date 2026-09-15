@@ -26,6 +26,8 @@ npm start        # http://localhost:4000 üzerinde API'yi başlatır
 | GET | `/api/search?q=...` | Başlık/özet/gövde üzerinde arama |
 | POST | `/api/contact` | İletişim formu — `{ name, email, message }` |
 | POST | `/api/newsletter` | Bülten aboneliği — `{ email }` |
+| GET | `/api/current-info` | Yayındaki güncel bilgi kayıtları |
+| POST | `/api/admin/current-info/ingest` | Aktif, resmî RSS kaynaklarını toplar (admin) |
 
 Tüm yanıtlar aynı zarfı kullanır:
 

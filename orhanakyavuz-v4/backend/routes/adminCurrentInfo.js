@@ -13,12 +13,23 @@ import {
   adminDeleteUpdate,
   getActiveSources,
 } from '../services/currentInfo.js';
+import { runAll } from '../ingest/index.js';
 import { sendSuccess, sendError, notFound } from '../middleware/response.js';
 
 export const adminCurrentInfoRouter = Router();
 
 // Tüm rotalar yönetici doğrulaması gerektirir
 adminCurrentInfoRouter.use(requireAuthenticatedUser, requireAdmin);
+
+// Manuel ingest tetikleme: aktif kaynaklardan veri ceker, draft olarak kaydeder
+adminCurrentInfoRouter.post('/ingest', async (_req, res) => {
+  try {
+    const result = await runAll();
+    return sendSuccess(res, result);
+  } catch (error) {
+    return sendError(res, 500, 'INGEST_FAILED', error.message);
+  }
+});
 
 adminCurrentInfoRouter.get('/sources', async (_req, res) => {
   try {

@@ -36,3 +36,12 @@ export function supabaseClientForToken(token) {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 }
+
+// service_role anahtarı RLS'i bypass eder — yalnızca sunucu tarafında
+// kullanılır, tarayıcıya asla gönderilmez. contact/newsletter gibi
+// login gerektirmeyen public-write işlemleri için gerekli.
+export const supabaseAdmin = (url && process.env.SUPABASE_SERVICE_ROLE_KEY)
+  ? createClient(url, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    })
+  : null;
